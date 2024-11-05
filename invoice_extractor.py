@@ -617,7 +617,7 @@ def load_sample_data() -> List[Dict]:
     return sample_data
 
 def main():
-    st.set_page_config(page_title="Energy & Carbon Dashboard", page_icon="⚡📊",layout="wide")
+    st.set_page_config(page_title="Energy & Carbon Dashboard", page_icon="⚡",layout="wide")
     st.title("Energy & Carbon Dashboard")
     
     # Add settings to sidebar
