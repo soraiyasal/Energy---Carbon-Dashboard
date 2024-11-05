@@ -1,1 +1,3 @@
-gitignore.txt
+.streamlit/secrets.toml
+.env
+__pycache__/
