@@ -1194,66 +1194,63 @@ def contact_us_page():
 
 # Main app logic
 def main():
-    import streamlit_analytics2 as sa2  # (Add this to your imports if you haven't yet)
-    
     load_css()
     
-    with sa2.track():
-        # Add ID for contact form scrolling
-        st.markdown('<a id="contact"></a>', unsafe_allow_html=True)
-
-        # Sidebar navigation with improved styling
-        with st.sidebar:
-            # st.image("https://via.placeholder.com/150x150.png?text=Logo", width=150)
-            
-            # User status indicator
-            if st.session_state.demo_mode:
-                st.info("Demo Mode Active")
-            
-            st.markdown("<h3>Navigation</h3>", unsafe_allow_html=True)
-            
-            # Navigation buttons
-            if st.button("Home", key="nav_home", use_container_width=True):
-                navigate_to('landing')
-            
-            if st.button("Dashboard", key="nav_dashboard", use_container_width=True):
-                navigate_to('data_entry')
-            
-            if st.button("Invoice Processing", key="nav_invoice", use_container_width=True):
-                navigate_to('invoice_processing')
-            
-            if st.button("Contact Us", key="nav_contact", use_container_width=True):
-                navigate_to('contact_us')
-            
-            # Demo mode toggle
-            st.markdown("<hr>", unsafe_allow_html=True)
-            
-            st.write("View sample data:")
-            if st.button(
-                "View Demo Data" if not st.session_state.demo_mode else "Clear Demo Data", 
-                key="toggle_demo",
-                use_container_width=True
-            ):
-                toggle_demo_mode()
-                st.rerun()
-            
-            # Compliance info
-            st.markdown("<hr>", unsafe_allow_html=True)
-            st.markdown("<h4>Compliance Information</h4>", unsafe_allow_html=True)
-            
-            with st.expander("Reporting Standards"):
-                st.write("This platform supports:")
-                st.write("• Based on DEFRA conversion factors")
+    # Add ID for contact form scrolling
+    st.markdown('<a id="contact"></a>', unsafe_allow_html=True)
+    
+    # Sidebar navigation with improved styling
+    with st.sidebar:
+        # st.image("https://via.placeholder.com/150x150.png?text=Logo", width=150)
         
-        # Main content based on current page
-        if st.session_state.current_page == 'landing':
-            landing_page()
-        elif st.session_state.current_page == 'data_entry':
-            data_entry_page()
-        elif st.session_state.current_page == 'invoice_processing':
-            invoice_processing_page()
-        elif st.session_state.current_page == 'contact_us':
-            contact_us_page()
+        # User status indicator
+        if st.session_state.demo_mode:
+            st.info("Demo Mode Active")
+        
+        st.markdown("<h3>Navigation</h3>", unsafe_allow_html=True)
+        
+        # Navigation buttons
+        if st.button("Home", key="nav_home", use_container_width=True):
+            navigate_to('landing')
+        
+        if st.button("Dashboard", key="nav_dashboard", use_container_width=True):
+            navigate_to('data_entry')
+        
+        if st.button("Invoice Processing", key="nav_invoice", use_container_width=True):
+            navigate_to('invoice_processing')
+        
+        if st.button("Contact Us", key="nav_contact", use_container_width=True):
+            navigate_to('contact_us')  # Use invoice page since it has the contact form prominently
+        
+        # Add a toggle for demo mode
+        st.markdown("<hr>", unsafe_allow_html=True)
+        
+        st.write("View sample data:")
+        if st.button(
+            "View Demo Data" if not st.session_state.demo_mode else "Clear Demo Data", 
+            key="toggle_demo",
+            use_container_width=True
+        ):
+            toggle_demo_mode()
+            st.rerun()
+        
+        # Add council compliance section
+        st.markdown("<hr>", unsafe_allow_html=True)
+        st.markdown("<h4>Compliance Information</h4>", unsafe_allow_html=True)
+        
+        with st.expander("Reporting Standards"):
+            st.write("This platform supports:")
+            st.write("• Based on DEFRA conversion factors")
+    
+    # Main content based on current page
+    if st.session_state.current_page == 'landing':
+        landing_page()
+    elif st.session_state.current_page == 'data_entry':
+        data_entry_page()
+    elif st.session_state.current_page == 'invoice_processing':
+        invoice_processing_page()
+    elif st.session_state.current_page == 'contact_us':
+        contact_us_page()
 
 if __name__ == "__main__":
     main()
