@@ -1299,7 +1299,6 @@ def landing_page():
                     <li>Data validation and quality checks</li>
                     <li>Custom reporting templates</li>
                     <li>Multi Site Analysis</li>
-
                 </ul>
                 <p style="margin-top: 1rem;"><strong>Complete our questionnaire to opt in for premium features</strong></p>
             </div>
