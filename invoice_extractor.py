@@ -1298,6 +1298,8 @@ def landing_page():
                     <li>Detailed emissions reports</li>
                     <li>Data validation and quality checks</li>
                     <li>Custom reporting templates</li>
+                    <li>Multi Site Analysis</li>
+
                 </ul>
                 <p style="margin-top: 1rem;"><strong>Complete our questionnaire to opt in for premium features</strong></p>
             </div>
@@ -1357,13 +1359,18 @@ def data_entry_page():
                 st.rerun()
         
         # Add note about premium features
-        st.markdown("""
-        <div class="premium-banner" style="margin-top: 2rem;">
-            <h3 style="margin-top: 0;">Premium Features Available <span class="premium-badge">Opt-in</span></h3>
-            <p>Save time with our invoice processing feature. Complete our questionnaire to opt in.</p>
-            <a href="#contact" style="text-decoration: none;"><button class="cta-button">Contact Us</button></a>
-        </div>
-        """, unsafe_allow_html=True)
+        # Premium Features Section in Python
+        col1, col2 = st.columns([3, 1])
+        with col1:
+            st.markdown("""
+                <h3 style="margin-top: 0;">Premium Features Available <span class="premium-badge">Opt-in</span></h3>
+                <p>Upgrade to access invoice processing, custom reports, data validation and more.</p>
+            """, unsafe_allow_html=True)
+        with col2:
+            if st.button("Contact Us", key="contact_us_banner", use_container_width=True):
+                navigate_to('contact_us')
+                st.rerun()
+
         
         # Show Contact Form
         show_contact_us_form()
@@ -1824,31 +1831,30 @@ def show_dashboard(df):
                 fig.update_layout(height=400)
                 st.plotly_chart(fig, use_container_width=True)
                 
-                st.markdown(f"""
-                <div class="card" style="background-color: #f8f9fa;">
-                    <h4 style="margin-top: 0;">Reduction Target Analysis:</h4>
-                    <ul>
-                        <li>Current annual emissions rate: <strong>{current_annual_rate:.2f} tCO₂e</strong></li>
-                        <li>Science-based target: <strong>{science_based_target:.2f} tCO₂e</strong> (15% reduction)</li>
-                        <li>Required reduction: <strong>{current_annual_rate - science_based_target:.2f} tCO₂e</strong></li>
-                    </ul>
-                </div>
-                """, unsafe_allow_html=True)
+                # st.markdown(f"""
+                # <div class="card" style="background-color: #f8f9fa;">
+                #     <h4 style="margin-top: 0;">Reduction Target Analysis:</h4>
+                #     <ul>
+                #         <li>Current annual emissions rate: <strong>{current_annual_rate:.2f} tCO₂e</strong></li>
+                #         <li>Science-based target: <strong>{science_based_target:.2f} tCO₂e</strong> (15% reduction)</li>
+                #         <li>Required reduction: <strong>{current_annual_rate - science_based_target:.2f} tCO₂e</strong></li>
+                #     </ul>
+                # </div>
+                # """, unsafe_allow_html=True)
     
     # Add premium features call-to-action after the dashboard
-    st.markdown("""
-    <div class="premium-banner" style="margin-top: 2rem;">
-        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap;">
-            <div style="flex: 3;">
-                <h3 style="margin-top: 0;">Premium Features Available <span class="premium-badge">Opt-in</span></h3>
-                <p>Upgrade to access invoice processing, custom reports, data validation and more.</p>
-            </div>
-            <div style="flex: 1; text-align: right;">
-                <a href="#contact" style="text-decoration: none;"><button class="cta-button">Contact Us</button></a>
-            </div>
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
+    # Premium Features Section in Python
+    col1, col2 = st.columns([3, 1])
+    with col1:
+        st.markdown("""
+            <h3 style="margin-top: 0;">Premium Features Available <span class="premium-badge">Opt-in</span></h3>
+            <p>Upgrade to access invoice processing, custom reports, data validation and more.</p>
+        """, unsafe_allow_html=True)
+    with col2:
+        if st.button("Contact Us", key="contact_us_banner", use_container_width=True):
+            navigate_to('contact_us')
+            st.rerun()
+
 
 # Invoice Processing Page (Premium Feature with Opt-in)
 def invoice_processing_page():
@@ -1924,6 +1930,23 @@ def invoice_processing_page():
     </div>
     """, unsafe_allow_html=True)
 
+
+# Invoice Processing Page (Premium Feature with Opt-in)
+def contact_us_page():
+    st.markdown("<h1 class='sub-header'>Contact Us</h1>", unsafe_allow_html=True)
+    
+    
+    # Contact Us Form
+    st.markdown('<a name="contact"></a>', unsafe_allow_html=True)
+    show_contact_us_form()
+    
+    # Add floating button to contact form
+    st.markdown("""
+    <div class="floating-button" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">
+        Contact Us
+    </div>
+    """, unsafe_allow_html=True)
+
 # Main app logic
 def main():
     load_css()
@@ -1952,7 +1975,7 @@ def main():
             navigate_to('invoice_processing')
         
         if st.button("Contact Us", key="nav_contact", use_container_width=True):
-            navigate_to('invoice_processing')  # Use invoice page since it has the contact form prominently
+            navigate_to('contact_us')  # Use invoice page since it has the contact form prominently
         
         # Add a toggle for demo mode
         st.markdown("<hr>", unsafe_allow_html=True)
@@ -1972,10 +1995,6 @@ def main():
         
         with st.expander("Reporting Standards"):
             st.write("This platform supports:")
-            st.write("• SECR Reporting")
-            st.write("• GHG Protocol")
-            st.write("• Carbon Reduction Commitment")
-            st.write("• Climate Emergency Declarations")
             st.write("• Based on DEFRA conversion factors")
     
     # Main content based on current page
@@ -1985,6 +2004,8 @@ def main():
         data_entry_page()
     elif st.session_state.current_page == 'invoice_processing':
         invoice_processing_page()
+    elif st.session_state.current_page == 'contact_us':
+        contact_us_page()
 
 if __name__ == "__main__":
     main()
