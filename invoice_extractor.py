@@ -1019,8 +1019,9 @@ def add_building_form():
     # Handle form submission outside the form itself
     if submitted:
         # Validate required fields
-        if not building_name or not address_line1 or not postcode:
-            st.error("Please fill in all required fields.")
+        # Updated validation check:
+        if not building_name:
+            st.error("Please fill in the building name (required field).")
             
             # Save the form data to session state to persist after rerun
             st.session_state.building_form_data = {
@@ -2839,8 +2840,9 @@ def show_dashboard(df):
             "total_emissions_tonnes": "Total Emissions (tonnes CO₂e)",
             "factor_year": "Emissions Factor Year"
         }
-        
-        export_data = export_data[list(export_columns.keys())].rename(columns=export_columns)
+        # Only include columns that exist in the DataFrame
+        available_columns = [col for col in export_columns.keys() if col in export_data.columns]
+        export_data = export_data[available_columns].rename(columns={col: export_columns[col] for col in available_columns})
     
     # Building info with action buttons - improved card design
     # Building info with action buttons - improved card design
