@@ -44,7 +44,7 @@ REPORTING_PERIODS = {
 
 # --- PAGE CONFIGURATION ---
 st.set_page_config(
-    page_title="Council Carbon Dashboard",
+    page_title="Carbon Tracker for Councils – Simple, Smart, Actionable",
     page_icon="🌱",
     layout="wide",
     initial_sidebar_state="expanded"
@@ -99,7 +99,7 @@ def toggle_demo_mode():
         st.session_state.selected_building = None
 
 def load_demo_data():
-    """Generate realistic sample data for demonstration"""
+    """Explore what your council's carbon reporting could look like – no setup required"""
     st.session_state.data_entries = []
     
     # Create some demo buildings
@@ -985,12 +985,12 @@ def add_building_form():
                 index=["Administrative Building", "Public Building", "Leisure Center", "Library", "School", "Other"].index(building_type) if building_type in ["Administrative Building", "Public Building", "Leisure Center", "Library", "School", "Other"] else 0
             )
             
-            floor_area = st.number_input("Floor Area (m²)*", 
+            floor_area = st.number_input("Floor Area (m²) (Optional)", 
                                         min_value=1, 
                                         value=floor_area)
         
         with col2:
-            address_line1 = st.text_input("Address Line 1*", 
+            address_line1 = st.text_input("Address Line 1 (Optional) ", 
                                          value=address_line1,
                                          placeholder="Street Address")
             
@@ -998,7 +998,7 @@ def add_building_form():
                                          value=address_line2,
                                          placeholder="Area/District")
             
-            postcode = st.text_input("Postcode*", 
+            postcode = st.text_input("Postcode (Optional)", 
                                     value=postcode,
                                     placeholder="e.g. AB12 3CD")
         
@@ -1921,57 +1921,57 @@ def create_emissions_pie_chart(df):
     
     return fig
 
-def show_environmental_impact(total_emissions):
-    """Show environmental impact metrics with improved visuals"""
-    st.subheader("Environmental Impact")
+# def show_environmental_impact(total_emissions):
+#     """Show environmental impact metrics with improved visuals"""
+#     st.subheader("Environmental Impact")
     
-    # Calculate impact metrics
-    trees_needed = int(total_emissions * 1000 / TREE_ABSORPTION_RATE)
-    car_km = int((total_emissions * 1000) / CAR_EMISSIONS_PER_KM)
-    homes_equivalent = int(total_emissions / HOME_ANNUAL_EMISSIONS)
+#     # # Calculate impact metrics
+#     # trees_needed = int(total_emissions * 1000 / TREE_ABSORPTION_RATE)
+#     # car_km = int((total_emissions * 1000) / CAR_EMISSIONS_PER_KM)
+#     # homes_equivalent = int(total_emissions / HOME_ANNUAL_EMISSIONS)
     
-    # Display impact cards with improved design
-    col1, col2, col3 = st.columns(3)
+#     # Display impact cards with improved design
+#     col1, col2, col3 = st.columns(3)
     
-    with col1:
-        st.markdown(f"""
-        <div class="metric-card" style="border-top-color: #4caf50;">
-            <div class="metric-value" style="color: #4caf50;">{trees_needed:,d}</div>
-            <div class="metric-label">Trees Needed</div>
-            <p style="margin-top: 0.5rem; font-size: 0.85rem; color: #666;">Trees required to offset your annual emissions</p>
-        </div>
-        """, unsafe_allow_html=True)
+#     with col1:
+#         st.markdown(f"""
+#         <div class="metric-card" style="border-top-color: #4caf50;">
+#             <div class="metric-value" style="color: #4caf50;">{trees_needed:,d}</div>
+#             <div class="metric-label">Trees Needed</div>
+#             <p style="margin-top: 0.5rem; font-size: 0.85rem; color: #666;">Trees required to offset your annual emissions</p>
+#         </div>
+#         """, unsafe_allow_html=True)
     
-    with col2:
-        st.markdown(f"""
-        <div class="metric-card" style="border-top-color: #ff9800;">
-            <div class="metric-value" style="color: #ff9800;">{car_km:,d}</div>
-            <div class="metric-label">Car Kilometers</div>
-            <p style="margin-top: 0.5rem; font-size: 0.85rem; color: #666;">Equivalent to this many kilometers of driving</p>
-        </div>
-        """, unsafe_allow_html=True)
+#     with col2:
+#         st.markdown(f"""
+#         <div class="metric-card" style="border-top-color: #ff9800;">
+#             <div class="metric-value" style="color: #ff9800;">{car_km:,d}</div>
+#             <div class="metric-label">Car Kilometers</div>
+#             <p style="margin-top: 0.5rem; font-size: 0.85rem; color: #666;">Equivalent to this many kilometers of driving</p>
+#         </div>
+#         """, unsafe_allow_html=True)
     
-    with col3:
-        st.markdown(f"""
-        <div class="metric-card" style="border-top-color: #1a73e8;">
-            <div class="metric-value" style="color: #1a73e8;">{homes_equivalent:,d}</div>
-            <div class="metric-label">Homes</div>
-            <p style="margin-top: 0.5rem; font-size: 0.85rem; color: #666;">Equivalent to annual usage of this many homes</p>
-        </div>
-        """, unsafe_allow_html=True)
+#     with col3:
+#         st.markdown(f"""
+#         <div class="metric-card" style="border-top-color: #1a73e8;">
+#             <div class="metric-value" style="color: #1a73e8;">{homes_equivalent:,d}</div>
+#             <div class="metric-label">Homes</div>
+#             <p style="margin-top: 0.5rem; font-size: 0.85rem; color: #666;">Equivalent to annual usage of this many homes</p>
+#         </div>
+#         """, unsafe_allow_html=True)
     
-    # Add interpretation note
-    st.markdown("""
-    <div class="card" style="margin-top: 20px;">
-        <h4 style="margin-top: 0;">What Does This Mean?</h4>
-        <p>These metrics help visualize your carbon impact in more tangible terms. 
-        They show the equivalent environmental impact of your organization's emissions compared to everyday activities and natural carbon absorption.</p>
-        <p style="font-size: 0.9rem; color: #666;">
-            <strong>Note:</strong> Tree absorption is based on mature trees over the course of a year. 
-            Car emissions are based on average emissions from a medium-sized petrol car.
-        </p>
-    </div>
-    """, unsafe_allow_html=True)
+#     # Add interpretation note
+#     st.markdown("""
+#     <div class="card" style="margin-top: 20px;">
+#         <h4 style="margin-top: 0;">What Does This Mean?</h4>
+#         <p>These metrics help visualize your carbon impact in more tangible terms. 
+#         They show the equivalent environmental impact of your organization's emissions compared to everyday activities and natural carbon absorption.</p>
+#         <p style="font-size: 0.9rem; color: #666;">
+#             <strong>Note:</strong> Tree absorption is based on mature trees over the course of a year. 
+#             Car emissions are based on average emissions from a medium-sized petrol car.
+#         </p>
+#     </div>
+#     """, unsafe_allow_html=True)
 
 # Year-on-Year Analysis feature
 def show_yearly_analysis():
