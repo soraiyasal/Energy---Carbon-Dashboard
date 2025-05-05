@@ -19,16 +19,18 @@ CAR_EMISSIONS_PER_KM = 0.12  # kg CO2 per km
 HOME_ANNUAL_EMISSIONS = 3.2  # tonnes CO2e per household annually
 
 # DEFRA carbon conversion factors - source: UK Government GHG Conversion Factors
+#Scope 3	Managed assets- electricity	Electricity generated	Electricity: UK	2020		kWh	kg CO2e
 ELECTRICITY_FACTORS = {
-    2022: 0.23332,
-    2023: 0.21233,
+    2022: 0.19338,
+    2023:  0.207074,
     2024: 0.20705,  # updated
     2025: 0.18543   # projected (official not yet published)
 }
 
+#Scope 1	Fuels	Gaseous fuels	Natural gas			kWh (Gross CV)	kg CO2e
 GAS_FACTORS = {
-    2022: 0.18521,
-    2023: 0.18403,
+    2022: 0.18254,
+    2023: 0.18293,
     2024: 0.18290,  # updated
     2025: 0.18150   # projected (official not yet published)
 }
@@ -990,7 +992,7 @@ def add_building_form():
                                         value=floor_area)
         
         with col2:
-            address_line1 = st.text_input("Address Line 1 (Optional) ", 
+            address_line1 = st.text_input("Address Line 1 (Optional)", 
                                          value=address_line1,
                                          placeholder="Street Address")
             
