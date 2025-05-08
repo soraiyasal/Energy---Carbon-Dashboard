@@ -3299,8 +3299,10 @@ def contact_us_page():
         <h3 style="margin-top: 0;">Get in Touch</h3>
         <p>Have questions about our carbon reporting solution? Looking to unlock premium features?</p>
         <p>Complete the form below and our team will get back to you within 24 hours.</p>
+        <p>Email us directly at <a href="mailto:hello@civiccarbon.com">hello@civiccarbon.com</a></p>
     </div>
     """, unsafe_allow_html=True)
+
     
     # Use columns instead of flex layout for better compatibility
     col1, col2, col3 = st.columns(3)
