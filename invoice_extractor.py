@@ -273,7 +273,7 @@ def load_css():
         
         /* Feature cards with consistent height */
         .feature-card {
-            height: 320px;
+            height: 350px; /* Increased height */
             display: flex;
             flex-direction: column;
             background-color: white;
@@ -284,6 +284,7 @@ def load_css():
             text-align: left;
             box-shadow: 0 2px 5px rgba(0,0,0,0.05);
             transition: all 0.3s ease;
+            overflow-y: auto; /* Allow vertical scrolling if content overflows */
         }
         
         .feature-card:hover {
@@ -299,7 +300,7 @@ def load_css():
         
         /* Info cards with consistent height */
         .info-card {
-            height: 250px;
+            height: 280px; /* Increased height */
             display: flex;
             flex-direction: column;
             background-color: white;
@@ -308,11 +309,13 @@ def load_css():
             padding: 24px;
             margin-bottom: 16px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            overflow-y: auto; /* Allow vertical scrolling if content overflows */
         }
         
         /* Feature info cards (taller) */
         .feature-info-card {
-            height: 380px;
+            height: 420px; /* Increased height */
+            overflow-y: auto; /* Allow vertical scrolling if content overflows */
         }
         
         /* Facts card */
@@ -366,7 +369,7 @@ def load_css():
         
         /* Improved Metric cards */
         .metric-card {
-            height: 180px;
+            height: 200px; /* Increased height */
             display: flex;
             flex-direction: column;
             background-color: white;
@@ -377,6 +380,7 @@ def load_css():
             text-align: center;
             margin-bottom: 20px;
             transition: transform 0.3s ease;
+            overflow-y: auto; /* Allow vertical scrolling if content overflows */
         }
         
         .metric-card:hover {
@@ -439,7 +443,7 @@ def load_css():
         
         /* Building card with improved hover effect */
         .building-card {
-            height: 200px;
+            height: 220px; /* Increased height */
             background-color: white;
             border-left: 4px solid #2E86C1;
             border-radius: 8px;
@@ -448,6 +452,7 @@ def load_css():
             box-shadow: 0 2px 6px rgba(0,0,0,0.1);
             transition: all 0.3s ease;
             position: relative;
+            overflow-y: auto; /* Allow vertical scrolling if content overflows */
         }
         
         .building-card:hover {
