@@ -2930,7 +2930,7 @@ def show_dashboard(df):
     show_dashboard_metrics(building_data)
     
     # Create tabs for different visualisations - improved tab design
-    tabs = st.tabs(["📈 Energy Usage", "💨 Emissions", "📊 Yearly Comparison", "🌳 Environmental Impact"])
+    tabs = st.tabs(["📈 Energy Usage", "💨 Emissions", "📊 Yearly Comparison"])
     
     with tabs[0]:
         # Usage chart
@@ -3153,20 +3153,20 @@ def show_dashboard(df):
             </div>
             """, unsafe_allow_html=True)
     
-    with tabs[3]:
-        # Environmental impact with improved design
-        total_emissions = building_data["total_emissions_tonnes"].sum()
-        show_environmental_impact(total_emissions)
+    # with tabs[3]:
+    #     # Environmental impact with improved design
+    #     total_emissions = building_data["total_emissions_tonnes"].sum()
+    #     show_environmental_impact(total_emissions)
     
-    # Add tabular view of the data with improved design
-    with st.expander("View Detailed Data Table", expanded=False):
-        st.markdown("""
-        <p style="margin-bottom: 10px; font-size: 0.9rem;">
-            The table below shows all recorded data for the selected building and time period. 
-            You can sort and filter this data directly in the table.
-        </p>
-        """, unsafe_allow_html=True)
-        st.dataframe(export_data, use_container_width=True)
+    # # Add tabular view of the data with improved design
+    # with st.expander("View Detailed Data Table", expanded=False):
+    #     st.markdown("""
+    #     <p style="margin-bottom: 10px; font-size: 0.9rem;">
+    #         The table below shows all recorded data for the selected building and time period. 
+    #         You can sort and filter this data directly in the table.
+    #     </p>
+    #     """, unsafe_allow_html=True)
+    #     st.dataframe(export_data, use_container_width=True)
 
 def invoice_processing_page():
     """Display the invoice processing premium feature page with improved UX"""
