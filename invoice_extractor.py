@@ -198,8 +198,9 @@ def get_csv_download_link(df, filename="council_carbon_data.csv", text="Download
     return href
 
 # --- STYLING ---
+# --- STYLING ---
 def load_css():
-    """Load improved CSS with better contrast and mobile responsiveness"""
+    """Load improved CSS with better contrast, mobile responsiveness, and consistent card sizing"""
     st.markdown("""
     <style>
         /* Basic Typography */
@@ -255,7 +256,7 @@ def load_css():
             color: white;
         }
         
-        /* Improved Card styling */
+        /* Improved Card styling with consistent heights */
         .card {
             background-color: white;
             border: 1px solid #e0e0e0;
@@ -270,15 +271,17 @@ def load_css():
             box-shadow: 0 5px 15px rgba(0,0,0,0.08);
         }
         
-        /* Feature cards */
+        /* Feature cards with consistent height */
         .feature-card {
+            height: 320px;
+            display: flex;
+            flex-direction: column;
             background-color: white;
             border: 1px solid #e0e0e0;
             border-radius: 8px;
             padding: 24px;
             margin-bottom: 16px;
             text-align: left;
-            height: 100%;
             box-shadow: 0 2px 5px rgba(0,0,0,0.05);
             transition: all 0.3s ease;
         }
@@ -294,7 +297,47 @@ def load_css():
             text-align: center;
         }
         
-        /* Improved Hero section */
+        /* Info cards with consistent height */
+        .info-card {
+            height: 250px;
+            display: flex;
+            flex-direction: column;
+            background-color: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 24px;
+            margin-bottom: 16px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        
+        /* Feature info cards (taller) */
+        .feature-info-card {
+            height: 380px;
+        }
+        
+        /* Facts card */
+        .facts-card {
+            background-color: #f8f9fa;
+            border-left: 4px solid #2E86C1;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+        
+        /* For rows with multiple cards */
+        .card-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+        
+        .card-row > div {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        /* Hero section */
         .hero-section {
             background: linear-gradient(120deg, #1E8449 0%, #2E86C1 100%);
             padding: 40px 24px;
@@ -321,17 +364,11 @@ def load_css():
             margin-right: auto;
         }
         
-        /* Facts cards */
-        .facts-card {
-            background-color: #f8f9fa;
-            border-left: 4px solid #2E86C1;
-            border-radius: 8px;
-            padding: 16px;
-            margin-bottom: 16px;
-        }
-        
         /* Improved Metric cards */
         .metric-card {
+            height: 180px;
+            display: flex;
+            flex-direction: column;
             background-color: white;
             border-top: 4px solid #2E86C1;
             border-radius: 10px;
@@ -402,6 +439,7 @@ def load_css():
         
         /* Building card with improved hover effect */
         .building-card {
+            height: 200px;
             background-color: white;
             border-left: 4px solid #2E86C1;
             border-radius: 8px;
@@ -409,7 +447,6 @@ def load_css():
             margin-bottom: 20px;
             box-shadow: 0 2px 6px rgba(0,0,0,0.1);
             transition: all 0.3s ease;
-            height: 200px; 
             position: relative;
         }
         
@@ -454,7 +491,7 @@ def load_css():
                 font-size: 1.8rem;
             }
             
-            .card, .feature-card {
+            .card, .feature-card, .info-card {
                 padding: 16px;
             }
             
@@ -463,6 +500,12 @@ def load_css():
                 width: 100% !important;
                 flex: 1 1 100% !important;
                 margin-bottom: 16px;
+            }
+            
+            /* Adjust card heights for mobile */
+            .feature-card, .info-card, .metric-card {
+                height: auto;
+                min-height: 200px;
             }
         }
         
@@ -2782,6 +2825,9 @@ def data_entry_page():
             st.rerun()
         st.markdown("</div>", unsafe_allow_html=True)
 
+# The error is occurring in the show_dashboard function around line 2906
+# Here's a fix to handle the missing 'factor_year' column
+
 def show_dashboard(df):
     """Display the dashboard with all visualisations - improved UX"""
     st.markdown("<h2>Carbon Emissions Dashboard</h2>", unsafe_allow_html=True)
@@ -2837,14 +2883,13 @@ def show_dashboard(df):
             "gas_provider": "Gas Provider",
             "electricity_emissions_kg": "Electricity Emissions (kg CO₂e)",
             "gas_emissions_kg": "Gas Emissions (kg CO₂e)",
-            "total_emissions_tonnes": "Total Emissions (tonnes CO₂e)",
-            "factor_year": "Emissions Factor Year"
+            "total_emissions_tonnes": "Total Emissions (tonnes CO₂e)"
         }
+        
         # Only include columns that exist in the DataFrame
         available_columns = [col for col in export_columns.keys() if col in export_data.columns]
         export_data = export_data[available_columns].rename(columns={col: export_columns[col] for col in available_columns})
     
-    # Building info with action buttons - improved card design
     # Building info with action buttons - improved card design
     col1, col2 = st.columns([3, 1])
     
@@ -2902,16 +2947,25 @@ def show_dashboard(df):
     )
     st.markdown("</div>", unsafe_allow_html=True)
 
-    # Show which emission factors were used
-    factor_years = building_data['factor_year'].unique()
-    factor_info = ", ".join([str(year) for year in factor_years])
-    
-    st.markdown(f"""
-    <div class="info-box">
-        <strong>Reporting Information:</strong> Using {st.session_state.reporting_period.capitalize()} Year reporting period with {factor_info} DEFRA emission factors.
-    </div>
-    """, unsafe_allow_html=True)
+    # Show which emission factors were used - FIX: Handle missing 'factor_year' column
+    if 'factor_year' in building_data.columns:
+        factor_years = building_data['factor_year'].unique()
+        factor_info = ", ".join([str(year) for year in factor_years])
+        
+        st.markdown(f"""
+        <div class="info-box">
+            <strong>Reporting Information:</strong> Using {st.session_state.reporting_period.capitalize()} Year reporting period with {factor_info} DEFRA emission factors.
+        </div>
+        """, unsafe_allow_html=True)
+    else:
+        # Alternative message when factor_year is not available
+        st.markdown(f"""
+        <div class="info-box">
+            <strong>Reporting Information:</strong> Using {st.session_state.reporting_period.capitalize()} Year reporting period with latest DEFRA emission factors.
+        </div>
+        """, unsafe_allow_html=True)
 
+    # Rest of function remains unchanged
     # Visualisation data format
     dashboard_data = []
     for entry in building_data.to_dict('records'):
@@ -2931,6 +2985,7 @@ def show_dashboard(df):
     
     # Create tabs for different visualisations - improved tab design
     tabs = st.tabs(["📈 Energy Usage", "💨 Emissions", "📊 Yearly Comparison"])
+    
     
     with tabs[0]:
         # Usage chart
@@ -3286,67 +3341,14 @@ def invoice_processing_page():
     # Contact form
     show_contact_us_form()
 
-def contact_us_page():
-    """Display the contact us page with improved UX"""
-    st.markdown("<h1>Contact Us</h1>", unsafe_allow_html=True)
-    
-    # Add prototype banner
-    add_data_disclaimer()
-    
-    # Add a more engaging introduction - fixed to properly render HTML
-    st.markdown("""
-    <div class="card" style="margin-bottom: 30px;">
-        <h3 style="margin-top: 0;">Get in Touch</h3>
-        <p>Have questions about our carbon reporting solution? Looking to unlock premium features?</p>
-        <p>Complete the form below and our team will get back to you within 24 hours.</p>
-        <p>Email us directly at <a href="mailto:hello@civiccarbon.com">hello@civiccarbon.com</a></p>
-    </div>
-    """, unsafe_allow_html=True)
-
-    
-    # Use columns instead of flex layout for better compatibility
-    col1, col2, col3 = st.columns(3)
-    
-    with col1:
-        st.markdown("""
-        <div style="text-align: center;">
-            <img src="https://img.icons8.com/fluency/48/000000/support.png" alt="Support Icon" style="width: 40px; margin-bottom: 10px;">
-            <h4 style="margin: 5px 0;">Dedicated Support</h4>
-            <p style="color: #666; font-size: 0.9rem;">Our team of carbon reporting experts is ready to help</p>
-        </div>
-        """, unsafe_allow_html=True)
-        
-    with col2:
-        st.markdown("""
-        <div style="text-align: center;">
-            <img src="https://img.icons8.com/fluency/48/000000/calendar-26.png" alt="Calendar Icon" style="width: 40px; margin-bottom: 10px;">
-            <h4 style="margin: 5px 0;">Quick Response</h4>
-            <p style="color: #666; font-size: 0.9rem;">We aim to respond to all inquiries within 24 hours</p>
-        </div>
-        """, unsafe_allow_html=True)
-        
-    with col3:
-        st.markdown("""
-        <div style="text-align: center;">
-            <img src="https://img.icons8.com/fluency/48/000000/training.png" alt="Training Icon" style="width: 40px; margin-bottom: 10px;">
-            <h4 style="margin: 5px 0;">Free Consultation</h4>
-            <p style="color: #666; font-size: 0.9rem;">Get a free 30-minute consultation on your reporting needs</p>
-        </div>
-        """, unsafe_allow_html=True)
-    
-    # Add some spacing before the contact form
-    st.markdown("<div style='height: 20px;'></div>", unsafe_allow_html=True)
-    
-    # Contact form
-    show_contact_us_form()
-
 def landing_page():
-    """Display landing page with improved UX"""
-    # Hero Section with more engaging design
+    """Display landing page with improved UX, more engaging content, and UK council-specific focus without unverified claims"""
+    # Hero Section with more engaging design and UK focus
     st.markdown("""
     <div class="hero-section">
-        <h1>Council Carbon Reporting Made Simple</h1>
-        <p>Track, analyse, and report your council's carbon emissions using DEFRA standards</p>
+        <h1>Make Your Council a Climate Leader</h1>
+        <p>Track, analyse, and report your carbon emissions to meet UK Net Zero commitments</p>
+        <p style="font-size: 1.1rem; margin-top: 10px;">Simple • Accurate • Actionable</p>
         <p style="font-size: 0.9rem; background: rgba(0,0,0,0.2); padding: 0.5rem; border-radius: 0.3rem; max-width: 600px; margin: 1rem auto;">
             Prototype Version: For demonstration only. No data will be saved.
         </p>
@@ -3358,57 +3360,176 @@ def landing_page():
         navigate_to('data_entry')
         st.rerun()
     
-    # Council benefits
-    show_council_benefits()
+    # NEW: Educational section for councils
+    st.markdown("""
+    <div class="card" style="margin-bottom: 2rem;">
+        <h2 style="margin-top: 0;">Why Council Carbon Tracking Matters Now</h2>
+        <div style="display: flex; flex-wrap: wrap; gap: 1.5rem; margin-top: 1rem;">
+            <div style="flex: 1; min-width: 250px;">
+                <h4 style="color: #1E8449; margin-top: 0;">Your Buildings, Your Impact</h4>
+                <p>Council-owned buildings contribute significantly to your local authority's direct emissions through electricity and gas usage.</p>
+                <p>Tracking this energy consumption helps identify opportunities to reduce both emissions and energy costs.</p>
+            </div>
+            <div style="flex: 1; min-width: 250px;">
+                <h4 style="color: #1E8449; margin-top: 0;">From Declaration to Action</h4>
+                <p>Many UK local authorities have declared climate emergencies and are looking for ways to translate these commitments into measurable action.</p>
+                <p>Carbon tracking creates accountability, helps inform funding decisions, and demonstrates progress to your residents and councillors.</p>
+            </div>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
     
-    # Emissions scope explanation
-    explain_emissions_scope()
-    
-    # How it works section with improved visuals
-    st.markdown("<h2 style='text-align: center; margin: 2rem 0 1.5rem;'>How It Works</h2>", unsafe_allow_html=True)
+    # Direct benefits to council leaders/managers - NEW section
+    st.markdown("""
+    <h2 style="text-align: center; margin: 2rem 0 1.5rem;">Benefits for Your Council</h2>
+    """, unsafe_allow_html=True)
     
     col1, col2, col3 = st.columns(3)
     
     with col1:
         st.markdown("""
         <div class="feature-card">
-            <img src="https://img.icons8.com/color/48/000000/edit-property.png" alt="Input Icon" style="width: 48px; margin-bottom: 15px;">
-            <h3>1. Input Your Data</h3>
-            <p>Enter energy consumption manually or upload your invoices</p>
+            <img src="https://img.icons8.com/fluency/48/000000/money-bag-pound.png" alt="Money Icon" style="width: 48px; margin-bottom: 15px;">
+            <h3>Financial Benefits</h3>
+            <ul>
+                <li>Identify energy waste that's costing your council money</li>
+                <li>Prioritise upgrades with potential for cost savings</li>
+                <li>Create better business cases for retrofitting projects</li>
+                <li>Reduce exposure to energy price fluctuations</li>
+            </ul>
         </div>
         """, unsafe_allow_html=True)
     
     with col2:
         st.markdown("""
         <div class="feature-card">
-            <img src="https://img.icons8.com/color/48/000000/calculate.png" alt="Calculate Icon" style="width: 48px; margin-bottom: 15px;">
-            <h3>2. We Calculate Emissions</h3>
-            <p>Automatic calculation using latest DEFRA factors</p>
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#1E8449" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 15px;">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+            </svg>
+            <h3>Compliance Support</h3>
+            <ul>
+                <li>Help meet SECR reporting requirements</li>
+                <li>Support climate emergency declaration commitments</li>
+                <li>Generate reports for committee meetings</li>
+                <li>Track progress toward UK Net Zero targets</li>
+            </ul>
         </div>
         """, unsafe_allow_html=True)
     
     with col3:
         st.markdown("""
         <div class="feature-card">
-            <img src="https://img.icons8.com/color/48/000000/dashboard.png" alt="Report Icon" style="width: 48px; margin-bottom: 15px;">
-            <h3>3. Get Instant Reports</h3>
-            <p>Clear dashboards ready for meetings and reports</p>
+            <img src="https://img.icons8.com/fluency/48/000000/prize.png" alt="Leadership Icon" style="width: 48px; margin-bottom: 15px;">
+            <h3>Leadership & Reputation</h3>
+            <ul>
+                <li>Show residents you're taking climate action seriously</li>
+                <li>Demonstrate fiscal responsibility with energy tracking</li>
+                <li>Share progress with other councils and partners</li>
+                <li>Build towards a low-carbon future for your community</li>
+            </ul>
         </div>
         """, unsafe_allow_html=True)
     
-    # Features comparison with improved design
+    # Informational section on carbon emissions and councils
     st.markdown("""
-    <h2 style='text-align: center; margin: 2rem 0 1.5rem;'>Available Features</h2>
+    <div class="facts-card" style="margin: 2rem 0;">
+        <h3 style="margin-top: 0;">Understanding Council Carbon Emissions</h3>
+        <p>Council buildings typically generate carbon emissions through energy usage - primarily electricity consumption and gas for heating. By tracking these emissions, councils can:</p>
+        <div style="display: flex; flex-wrap: wrap; gap: 1.5rem; margin-top: 1rem;">
+            <div style="flex: 1; min-width: 200px;">
+                <p><strong>Identify</strong> which buildings are using the most energy</p>
+            </div>
+            <div style="flex: 1; min-width: 200px;">
+                <p><strong>Monitor</strong> the impact of energy efficiency measures</p>
+            </div>
+            <div style="flex: 1; min-width: 200px;">
+                <p><strong>Report</strong> on progress toward climate commitments</p>
+            </div>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    # Emissions scope explanation - improved with UK context and council focus
+    st.markdown("""
+    <div class="card">
+        <h3>What We Track for Your Council</h3>
+        <p>This dashboard focuses on the emissions you can monitor and potentially reduce:</p>
+        <p>
+            <span class="scope-badge scope1-badge">SCOPE 1</span> Direct emissions from council buildings including gas for heating
+        </p>
+        <p>
+            <span class="scope-badge scope2-badge">SCOPE 2</span> Indirect emissions from purchased electricity for buildings
+        </p>
+        <div style="background-color: #f8f9fa; padding: 15px; border-radius: 8px; margin-top: 15px;">
+            <h4 style="margin-top: 0;">New to Carbon Emissions Tracking?</h4>
+            <p style="margin-bottom: 5px;"><strong>Scope 1</strong> = Direct emissions you create and control (like burning gas for heating)</p>
+            <p style="margin-bottom: 5px;"><strong>Scope 2</strong> = Indirect emissions from the electricity you purchase</p>
+            <p style="margin-bottom: 0; font-style: italic;">UK councils are increasingly focusing on tracking and reducing both Scope 1 and 2 emissions as part of their climate commitments.</p>
+        </div>
+        <p style="margin-top: 15px;"><strong>Coming Soon:</strong> Fleet vehicle emissions tracking, business travel, and waste management reporting options.</p>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    # How it works section - Council specific with clearer benefits
+    st.markdown("<h2 style='text-align: center; margin: 2rem 0 1.5rem;'>How It Works for Councils</h2>", unsafe_allow_html=True)
+    
+    col1, col2, col3 = st.columns(3)
+    
+    with col1:
+        st.markdown("""
+        <div class="feature-card">
+            <img src="https://img.icons8.com/fluency/48/000000/add-file.png" alt="Input Icon" style="width: 48px; margin-bottom: 15px;">
+            <h3>1. Input Your Utility Data</h3>
+            <p>Enter electricity and gas consumption from your council utility bills</p>
+            <p class="small-text" style="font-size: 0.85rem; color: #666;">No special expertise required - just the kWh figures from your bills</p>
+        </div>
+        """, unsafe_allow_html=True)
+    
+    with col2:
+        st.markdown("""
+        <div class="feature-card">
+            <img src="https://img.icons8.com/fluency/48/000000/automatic.png" alt="Calculate Icon" style="width: 48px; margin-bottom: 15px;">
+            <h3>2. Automatic Calculations</h3>
+            <p>We apply the latest DEFRA conversion factors to your energy data</p>
+            <p class="small-text" style="font-size: 0.85rem; color: #666;">No more complex spreadsheets or manual calculations</p>
+        </div>
+        """, unsafe_allow_html=True)
+    
+    with col3:
+        st.markdown("""
+        <div class="feature-card">
+            <img src="https://img.icons8.com/fluency/48/000000/decision.png" alt="Report Icon" style="width: 48px; margin-bottom: 15px;">
+            <h3>3. Make Informed Decisions</h3>
+            <p>See which buildings need attention and track your progress</p>
+            <p class="small-text" style="font-size: 0.85rem; color: #666;">Export reports for council committees and leadership</p>
+        </div>
+        """, unsafe_allow_html=True)
+    
+    # Features comparison with council value proposition
+    st.markdown("""
+    <h2 style='text-align: center; margin: 2rem 0 1.5rem;'>Features for Councils</h2>
     <div class="card">
         <div style="display: flex; flex-wrap: wrap; gap: 1.5rem;">
-<div style="flex: 1; min-width: 250px;">
+            <div style="flex: 1; min-width: 250px;">
+                <h3 style="color: #2E86C1;">Included Features</h3>
+                <ul>
+                    <li>Multiple building energy tracking</li>
+                    <li>Automatic DEFRA emissions calculations</li>
+                    <li>Building comparison tools</li>
+                    <li>Year-on-year carbon reduction tracking</li>
+                    <li>CSV export for committee reports</li>
+                    <li>Seasonal trend analysis</li>
+                </ul>
+            </div>
+            <div style="flex: 1; min-width: 250px;">
                 <h3 style="color: #2E86C1;">Premium Features <span class="premium-badge">Coming Soon</span></h3>
                 <ul>
-                    <li>Automatic invoice processing</li>
-                    <li>Detailed emissions reports</li>
-                    <li>Data validation and quality checks</li>
-                    <li>Custom reporting templates</li>
-                    <li>Multi-site analysis</li>
+                    <li>Automatic bill processing from major UK energy suppliers</li>
+                    <li>SECR-ready reports with one click</li>
+                    <li>Carbon reduction roadmap planning tools</li>
+                    <li>Multi-council benchmarking</li>
+                    <li>Fleet vehicle and waste emissions tracking</li>
                 </ul>
                 <p style="margin-top: 1rem;"><strong>Complete our questionnaire to opt in for premium features</strong></p>
             </div>
@@ -3416,12 +3537,34 @@ def landing_page():
     </div>
     """, unsafe_allow_html=True)
     
-    # Secondary CTA
-    if st.button("Try the Demo", key="try_demo_landing"):
-        st.session_state.demo_mode = True
-        load_demo_data()
-        navigate_to('data_entry')
-        st.rerun()
+    # Take Action section - actionable CTAs
+    st.markdown("""
+    <h2 style='text-align: center; margin: 1.5rem 0 1rem;'>Ready to Take Action?</h2>
+    <p style='text-align: center; margin-bottom: 2rem;'>Start tracking your council's carbon emissions today</p>
+    """, unsafe_allow_html=True)
+    
+    # Action buttons in a row
+    col1, col2, col3 = st.columns(3)
+    
+    with col1:
+        if st.button("Try the Demo", key="try_demo_landing", use_container_width=True, type="primary"):
+            st.session_state.demo_mode = True
+            load_demo_data()
+            navigate_to('data_entry')
+            st.rerun()
+        st.markdown("<p style='text-align: center; font-size: 0.85rem;'>See how it works with sample data</p>", unsafe_allow_html=True)
+    
+    with col2:
+        if st.button("Get Started", key="get_started_bottom", use_container_width=True):
+            navigate_to('data_entry')
+            st.rerun()
+        st.markdown("<p style='text-align: center; font-size: 0.85rem;'>Add your own council buildings</p>", unsafe_allow_html=True)
+    
+    with col3:
+        if st.button("Contact Us", key="contact_us", use_container_width=True):
+            navigate_to('contact_us')
+            st.rerun()
+        st.markdown("<p style='text-align: center; font-size: 0.85rem;'>Learn more about our solutions</p>", unsafe_allow_html=True)
     
     # Contact form
     show_contact_us_form()
