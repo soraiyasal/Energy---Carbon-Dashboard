@@ -3413,7 +3413,7 @@ def landing_page():
     # NEW: Educational section for councils
     st.markdown("""
     <div class="card" style="margin-bottom: 2rem;">
-        <h2 style="margin-top: 0;">Why Council Carbon Tracking Matters Now</h2>
+        <h2 style="margin-top: 0;">Why Civic Carbon Tracking Matters Now</h2>
         <div style="display: flex; flex-wrap: wrap; gap: 1.5rem; margin-top: 1rem;">
             <div style="flex: 1; min-width: 250px;">
                 <h4 style="color: #33d476; margin-top: 0;">Your Buildings, Your Impact</h4>
@@ -3484,7 +3484,7 @@ def landing_page():
     # Informational section on carbon emissions and councils
     st.markdown("""
     <div class="facts-card" style="margin: 2rem 0;">
-        <h3 style="margin-top: 0;">Understanding Council Carbon Emissions</h3>
+        <h3 style="margin-top: 0;">Understanding Your Carbon Emissions</h3>
         <p>Council buildings typically generate carbon emissions through energy usage - primarily electricity consumption and gas for heating. By tracking these emissions, councils can:</p>
         <div style="display: flex; flex-wrap: wrap; gap: 1.5rem; margin-top: 1rem;">
             <div style="flex: 1; min-width: 200px;">
@@ -3631,7 +3631,7 @@ def main():
     # Sidebar navigation with improved design
     with st.sidebar:
         st.image("https://img.icons8.com/fluency/96/000000/natural-food.png", width=80)
-        st.markdown("<h1 style='margin-top: 0;'>Council Carbon</h1>", unsafe_allow_html=True)
+        st.markdown("<h1 style='margin-top: 0;'>Civic Carbon</h1>", unsafe_allow_html=True)
         
         # Prototype notice
         st.warning("🔔 PROTOTYPE VERSION: No data will be saved. For demonstration only.")
