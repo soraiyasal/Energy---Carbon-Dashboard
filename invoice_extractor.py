@@ -647,6 +647,23 @@ def load_css():
             visibility: visible;
             opacity: 1;
         }
+                
+          st.form_submit_button
+
+            st.form_submit_button[kind="primary"] {
+            border: none !important;
+            background-color: #4abced !important; /* Green color */
+            color: white !important;
+            transition: all 0.3s ease !important;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
+        }
+
+        /* Hover effect for primary buttons */
+        st.form_submit_button[kind="primary"]:hover {
+            background-color: #4abced !important; /* Darker green on hover */
+            transform: translateY(-2px) !important; /* Slight raise effect */
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2) !important; /* Enhanced shadow on hover */
+        }       
         .stButton button[kind="primary"] {
             border: none !important;
             background-color: #4abced !important; /* Green color */
