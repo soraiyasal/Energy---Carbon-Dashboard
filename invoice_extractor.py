@@ -342,7 +342,7 @@ def load_css():
         
         /* Hero section */
         .hero-section {
-            background: linear-gradient(120deg, #1E8449 0%, #2E86C1 100%);
+            background: linear-gradient(120deg, #33d476 0%, #2E86C1 100%);
             padding: 40px 24px;
             border-radius: 12px;
             margin-bottom: 32px;
@@ -418,14 +418,14 @@ def load_css():
             padding: 30px;
             border-radius: 12px;
             margin: 30px 0;
-            border: 2px solid #1E8449;
+            border: 2px solid #33d476;
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
         }
         
         /* Improved Download button */
         .download-button {
             display: inline-block;
-            background-color: #1E8449;
+            background-color: #33d476;
             color: white;
             padding: 10px 18px;
             text-align: center;
@@ -478,7 +478,7 @@ def load_css():
         }
         
         .stTabs [aria-selected="true"] {
-            background-color: #2E86C1 !important;
+            background-color: #33d476!important;
             color: white !important;
         }
         
@@ -647,6 +647,34 @@ def load_css():
             visibility: visible;
             opacity: 1;
         }
+        .stButton button[kind="primary"] {
+            border: none !important;
+            background-color: #4abced !important; /* Green color */
+            color: white !important;
+            transition: all 0.3s ease !important;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
+        }
+
+        /* Hover effect for primary buttons */
+        .stButton button[kind="primary"]:hover {
+            background-color: #4abced !important; /* Darker green on hover */
+            transform: translateY(-2px) !important; /* Slight raise effect */
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2) !important; /* Enhanced shadow on hover */
+        }
+        
+        .stButton button[kind="secondary"] {
+            border: none !important;
+
+            transition: all 0.3s ease !important;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
+        }
+
+        /* Hover effect for primary buttons */
+        .stButton button[kind="secondary"]:hover {
+            transform: translateY(-2px) !important; /* Slight raise effect */
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2) !important; /* Enhanced shadow on hover */
+        }
+
     </style>
     """, unsafe_allow_html=True)
 
@@ -3371,12 +3399,12 @@ def landing_page():
         <h2 style="margin-top: 0;">Why Council Carbon Tracking Matters Now</h2>
         <div style="display: flex; flex-wrap: wrap; gap: 1.5rem; margin-top: 1rem;">
             <div style="flex: 1; min-width: 250px;">
-                <h4 style="color: #1E8449; margin-top: 0;">Your Buildings, Your Impact</h4>
+                <h4 style="color: #33d476; margin-top: 0;">Your Buildings, Your Impact</h4>
                 <p>Council-owned buildings contribute significantly to your local authority's direct emissions through electricity and gas usage.</p>
                 <p>Tracking this energy consumption helps identify opportunities to reduce both emissions and energy costs.</p>
             </div>
             <div style="flex: 1; min-width: 250px;">
-                <h4 style="color: #1E8449; margin-top: 0;">From Declaration to Action</h4>
+                <h4 style="color: #33d476; margin-top: 0;">From Declaration to Action</h4>
                 <p>Many UK local authorities have declared climate emergencies and are looking for ways to translate these commitments into measurable action.</p>
                 <p>Carbon tracking creates accountability, helps inform funding decisions, and demonstrates progress to your residents and councillors.</p>
             </div>
@@ -3408,7 +3436,7 @@ def landing_page():
     with col2:
         st.markdown("""
         <div class="feature-card">
-            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#1E8449" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 15px;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#33d476" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 15px;">
                 <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
                 <polyline points="22 4 12 14.01 9 11.01"></polyline>
             </svg>
