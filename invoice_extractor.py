@@ -24,7 +24,7 @@ ELECTRICITY_FACTORS = {
     2022: 0.19338,
     2023:  0.207074,
     2024: 0.20705,  # updated
-    2025: 0.18543   # projected (official not yet published)
+    2025: 0.20705  # projected (official not yet published)
 }
 
 #Scope 1	Fuels	Gaseous fuels	Natural gas			kWh (Gross CV)	kg CO2e
@@ -32,7 +32,7 @@ GAS_FACTORS = {
     2022: 0.18254,
     2023: 0.18293,
     2024: 0.18290,  # updated
-    2025: 0.18150   # projected (official not yet published)
+    2025: 0.18290   # projected (official not yet published)
 }
 
 # Define available years for selection
