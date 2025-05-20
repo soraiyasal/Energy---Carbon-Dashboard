@@ -1,5 +1,4 @@
 
-
 import streamlit as st
 import pandas as pd
 import plotly.express as px
@@ -14,6 +13,15 @@ import uuid
 import time
 import calendar
 
+# --- PAGE CONFIGURATION --- (MUST BE THE FIRST STREAMLIT COMMAND)
+st.set_page_config(
+    page_title="Carbon Tracker for Councils – Simple, Smart, Actionable",
+    page_icon="🌱",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
+
+# Now add Google Analytics after page config
 def add_google_analytics():
     ga_script = """
     <!-- Google tag (gtag.js) -->
@@ -36,20 +44,20 @@ CAR_EMISSIONS_PER_KM = 0.12  # kg CO2 per km
 HOME_ANNUAL_EMISSIONS = 3.2  # tonnes CO2e per household annually
 
 # DEFRA carbon conversion factors - source: UK Government GHG Conversion Factors
-#Scope 3	Managed assets- electricity	Electricity generated	Electricity: UK	2020		kWh	kg CO2e
+#Scope 3 Managed assets- electricity Electricity generated Electricity: UK 2020 kWh kg CO2e
 ELECTRICITY_FACTORS = {
     2022: 0.19338,
-    2023:  0.207074,
-    2024: 0.20705,  # updated
-    2025: 0.20705  # projected (official not yet published)
+    2023: 0.207074,
+    2024: 0.20705, # updated
+    2025: 0.20705 # projected (official not yet published)
 }
 
-#Scope 1	Fuels	Gaseous fuels	Natural gas			kWh (Gross CV)	kg CO2e
+#Scope 1 Fuels Gaseous fuels Natural gas kWh (Gross CV) kg CO2e
 GAS_FACTORS = {
     2022: 0.18254,
     2023: 0.18293,
-    2024: 0.18290,  # updated
-    2025: 0.18290   # projected (official not yet published)
+    2024: 0.18290, # updated
+    2025: 0.18290 # projected (official not yet published)
 }
 
 # Define available years for selection
@@ -60,14 +68,6 @@ REPORTING_PERIODS = {
     "calendar": "Calendar Year (Jan-Dec)",
     "financial": "Financial Year (Apr-Mar)"
 }
-
-# --- PAGE CONFIGURATION ---
-st.set_page_config(
-    page_title="Carbon Tracker for Councils – Simple, Smart, Actionable",
-    page_icon="🌱",
-    layout="wide",
-    initial_sidebar_state="expanded"
-)
 
 # --- SESSION STATE INITIALISATION ---
 if 'current_page' not in st.session_state:
@@ -102,7 +102,7 @@ if 'building_form_data' not in st.session_state:
 # Add reporting period setting
 if 'reporting_period' not in st.session_state:
     st.session_state.reporting_period = "calendar"
-
+    
 # --- NAVIGATION AND STATE FUNCTIONS ---
 def navigate_to(page):
     st.session_state.current_page = page
