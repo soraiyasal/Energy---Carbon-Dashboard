@@ -198,501 +198,552 @@ def get_csv_download_link(df, filename="council_carbon_data.csv", text="Download
     return href
 
 # --- STYLING ---
-# --- STYLING ---
 def load_css():
-    """Load improved CSS with better contrast, mobile responsiveness, and consistent card sizing"""
+    """Load improved CSS with sleek, professional, climate-friendly styling"""
     st.markdown("""
-    <style>
-        /* Basic Typography */
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            color: #333;
-            line-height: 1.5;
-        }
+<style>
+    /* Basic Typography - Improved readability */
+    body {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        color: #2C3E50; /* Deeper text color for better contrast */
+        line-height: 1.5;
+    }
+    
+    h1, h2, h3, h4, h5 {
+        color: #2C3E50; /* Matching text color for headings */
+        font-weight: 600;
+        margin-top: 0.5em;
+        margin-bottom: 0.5em;
+    }
+    
+    p, li {
+        color: #34495E;
+        font-size: 1rem;
+    }
+    
+    /* Professional prototype banner */
+    .prototype-banner {
+    background-color: #2C3E50; /* Navy professional banner */
+    color: white;
+    padding: 9px;
+    text-align: center;
+    font-weight: 600;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    font-size: 0.9rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+    letter-spacing: 0.5px;
+    border-radius: 8px; /* Added rounded corners */
+    margin-bottom: 2px;
+    }
         
-        h1, h2, h3, h4, h5 {
-            color: #222;
-            font-weight: 600;
-            margin-top: 0.5em;
-            margin-bottom: 0.5em;
-        }
-        
-        p, li {
-            color: #333;
-            font-size: 1rem;
-        }
-        
-        /* Improved Main Banner */
-        .prototype-banner {
-            background-color: #ff6b00;
-            color: #000;
-            padding: 8px;
-            text-align: center;
-            font-weight: bold;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            font-size: 0.9rem;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        
-        /* Scope badges for emissions types - high contrast */
-        .scope-badge {
-            display: inline-block;
-            padding: 3px 8px;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            font-weight: bold;
-            margin-right: 6px;
-        }
-        
-        .scope1-badge {
-            background-color: #d32f2f;
-            color: white;
-        }
-        
-        .scope2-badge {
-            background-color: #2e7d32;
-            color: white;
-        }
-        
-        /* Improved Card styling with consistent heights */
-        .card {
-            background-color: white;
-            border: 1px solid #e0e0e0;
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 16px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            transition: all 0.2s ease;
-        }
-        
-        .card:hover {
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-        }
-        
-        /* Feature cards with consistent height */
-        .feature-card {
-            height: 350px; /* Increased height */
-            display: flex;
-            flex-direction: column;
-            background-color: white;
-            border: 1px solid #e0e0e0;
-            border-radius: 8px;
-            padding: 24px;
-            margin-bottom: 16px;
-            text-align: left;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            transition: all 0.3s ease;
-            overflow-y: auto; /* Allow vertical scrolling if content overflows */
-        }
-        
-        .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
-        }
-        
-        .feature-card h3 {
-            margin-bottom: 16px;
-            color: #1a73e8;
-            text-align: center;
-        }
-        
-        /* Info cards with consistent height */
-        .info-card {
-            height: 280px; /* Increased height */
-            display: flex;
-            flex-direction: column;
-            background-color: white;
-            border: 1px solid #e0e0e0;
-            border-radius: 8px;
-            padding: 24px;
-            margin-bottom: 16px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            overflow-y: auto; /* Allow vertical scrolling if content overflows */
-        }
-        
-        /* Feature info cards (taller) */
-        .feature-info-card {
-            height: 420px; /* Increased height */
-            overflow-y: auto; /* Allow vertical scrolling if content overflows */
-        }
-        
-        /* Facts card */
-        .facts-card {
-            background-color: #f8f9fa;
-            border-left: 4px solid #2E86C1;
-            border-radius: 8px;
-            padding: 16px;
-            margin-bottom: 16px;
-        }
-        
-        /* For rows with multiple cards */
-        .card-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 16px;
-            margin-bottom: 16px;
-        }
-        
-        .card-row > div {
-            flex: 1;
-            min-width: 250px;
-        }
-        
-        /* Hero section */
-        .hero-section {
-            background: linear-gradient(120deg, #33d476 0%, #2E86C1 100%);
-            padding: 40px 24px;
-            border-radius: 12px;
-            margin-bottom: 32px;
-            text-align: center;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-        }
-        
+    /* Scope badges for emissions types - climate-friendly colors */
+    .scope-badge {
+        display: inline-block;
+        padding: 4px 10px;
+        border-radius: 4px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        margin-right: 8px;
+        letter-spacing: 0.5px;
+    }
+    
+    .scope1-badge {
+        background-color: #CF6F42; /* Terracotta - sophisticated earth tone */
+        color: white;
+    }
+    
+    .scope2-badge {
+        background-color: #2A8D60; /* Forest green - mature environmental */
+        color: white;
+    }
+    
+    /* Sleeker card styling */
+    .card {
+        background-color: white;
+        border: 1px solid #E0E0E0;
+        border-radius: 8px;
+        padding: 24px;
+        margin-bottom: 18px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+        transition: all 0.25s ease;
+    }
+    
+    .card:hover {
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+    
+    /* Feature cards with refined style */
+    .feature-card {
+        height: 350px;
+        display: flex;
+        flex-direction: column;
+        background-color: white;
+        border: 1px solid #E5E5E5;
+        border-radius: 8px;
+        padding: 28px;
+        margin-bottom: 18px;
+        text-align: left;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.04);
+        transition: all 0.3s ease;
+        overflow-y: auto;
+    }
+    
+    .feature-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 18px rgba(0,0,0,0.08);
+    }
+    
+    .feature-card h3 {
+        margin-bottom: 16px;
+        color: #1D6A96; /* Ocean blue - trustworthy */
+        text-align: center;
+        font-weight: 600;
+    }
+    
+    /* Info cards with refined style */
+    .info-card {
+        height: 280px;
+        display: flex;
+        flex-direction: column;
+        background-color: white;
+        border: 1px solid #E5E5E5;
+        border-radius: 8px;
+        padding: 24px;
+        margin-bottom: 18px;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.04);
+        overflow-y: auto;
+    }
+    
+    /* Feature info cards with refined style */
+    .feature-info-card {
+        height: 420px;
+        overflow-y: auto;
+    }
+    
+    /* Facts card with climate-friendly colors */
+    .facts-card {
+        background-color: #F4F6F9; /* Lighter blue-gray */
+        border-left: 4px solid #1D6A96; /* Ocean blue */
+        border-radius: 6px;
+        padding: 20px;
+        margin-bottom: 18px;
+    }
+    
+    /* Grid layout for card rows */
+    .card-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 18px;
+        margin-bottom: 18px;
+    }
+    
+    .card-row > div {
+        flex: 1;
+        min-width: 260px;
+    }
+    
+    /* Professional hero section */
+    .hero-section {
+        background: linear-gradient(120deg, #16A085 0%, #1D6A96 100%); /* Teal to ocean blue gradient */
+        padding: 50px 30px;
+        border-radius: 10px;
+        margin-bottom: 36px;
+        text-align: center;
+        box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+    }
+    
+    .hero-section h1 {
+        color: white;
+        font-size: 2.6rem;
+        margin-bottom: 18px;
+        font-weight: 700;
+        line-height: 1.2;
+        letter-spacing: -0.5px;
+    }
+    
+    .hero-section p {
+        color: white;
+        font-size: 1.25rem;
+        margin-bottom: 18px;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+        line-height: 1.6;
+    }
+    
+    /* Sophisticated metric cards */
+    .metric-card {
+        height: 210px;
+        display: flex;
+        flex-direction: column;
+        background-color: white;
+        border-top: 4px solid #1D6A96; /* Ocean blue */
+        border-radius: 8px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+        padding: 24px;
+        text-align: center;
+        margin-bottom: 22px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        overflow-y: auto;
+    }
+    
+    .metric-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    }
+    
+    .metric-value {
+        font-size: 2.4rem;
+        font-weight: bold;
+        color: #1D6A96; /* Ocean blue */
+        margin-bottom: 10px;
+    }
+    
+    .metric-label {
+        font-size: 1.05rem;
+        color: #34495E;
+        font-weight: 500;
+    }
+    
+    /* Premium elements */
+    .premium-badge {
+        display: inline-block;
+        background-color: #F9E8DD; /* Warm sand */
+        color: #212529;
+        padding: 4px 10px;
+        border-radius: 4px;
+        margin-left: 8px;
+        font-size: 0.8rem;
+        font-weight: bold;
+    }
+    
+    /* Contact section */
+    .contact-section {
+        background: #F5F9FA;
+        padding: 35px;
+        border-radius: 10px;
+        margin: 35px 0;
+        border: 2px solid #16A085; /* Teal */
+        box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    }
+    
+    /* Download button */
+    .download-button {
+        display: inline-block;
+        background-color: #16A085; /* Teal */
+        color: white;
+        padding: 12px 20px;
+        text-align: center;
+        border-radius: 6px;
+        text-decoration: none;
+        font-weight: 600;
+        margin: 12px 0;
+        transition: all 0.25s ease;
+    }
+    
+    .download-button:hover {
+        background-color: #138D76; /* Darker teal */
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
+    
+    /* Building cards */
+    .building-card {
+        height: 230px;
+        background-color: white;
+        border-left: 4px solid #1D6A96; /* Ocean blue */
+        border-radius: 8px;
+        padding: 24px;
+        margin-bottom: 22px;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+        transition: all 0.3s ease;
+        position: relative;
+        overflow-y: auto;
+    }
+    
+    .building-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 18px rgba(0,0,0,0.1);
+    }
+    
+    .building-card h3 {
+        color: #1D6A96; /* Ocean blue */
+        margin-top: 0;
+        margin-bottom: 14px;
+        font-weight: 600;
+    }
+    
+    /* Tab styling */
+    .stTabs [data-baseweb="tab-list"] {
+        gap: 10px;
+    }
+    
+    .stTabs [data-baseweb="tab"] {
+        border-radius: 6px 6px 0 0;
+        padding: 12px 18px;
+        background-color: #F5F9FA;
+        font-weight: 500;
+    }
+    
+    .stTabs [aria-selected="true"] {
+        background-color: #1D6A96 !important; /* Ocean blue */
+        color: white !important;
+    }
+    
+    /* Mobile responsiveness */
+    @media (max-width: 768px) {
         .hero-section h1 {
-            color: white;
-            font-size: 2.5rem;
-            margin-bottom: 16px;
-            font-weight: 700;
-            line-height: 1.2;
+            font-size: 1.9rem;
         }
         
         .hero-section p {
-            color: white;
-            font-size: 1.2rem;
-            margin-bottom: 16px;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        /* Improved Metric cards */
-        .metric-card {
-            height: 200px; /* Increased height */
-            display: flex;
-            flex-direction: column;
-            background-color: white;
-            border-top: 4px solid #2E86C1;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-            padding: 20px;
-            text-align: center;
-            margin-bottom: 20px;
-            transition: transform 0.3s ease;
-            overflow-y: auto; /* Allow vertical scrolling if content overflows */
-        }
-        
-        .metric-card:hover {
-            transform: translateY(-5px);
+            font-size: 1.05rem;
         }
         
         .metric-value {
-            font-size: 2.2rem;
-            font-weight: bold;
-            color: #2E86C1;
-            margin-bottom: 8px;
+            font-size: 1.9rem;
         }
         
-        .metric-label {
-            font-size: 1rem;
-            color: #333;
-            font-weight: 500;
+        .card, .feature-card, .info-card {
+            padding: 18px;
         }
         
-        /* Premium elements */
-        .premium-badge {
-            display: inline-block;
-            background-color: #ffc107;
-            color: #212529;
-            padding: 4px 8px;
-            border-radius: 4px;
-            margin-left: 8px;
-            font-size: 0.8rem;
-            font-weight: bold;
+        /* Stack columns on mobile */
+        [data-testid="column"] {
+            width: 100% !important;
+            flex: 1 1 100% !important;
+            margin-bottom: 18px;
         }
         
-        /* Improved Contact section */
-        .contact-section {
-            background: #f8f9fa;
-            padding: 30px;
-            border-radius: 12px;
-            margin: 30px 0;
-            border: 2px solid #33d476;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        /* Adjust card heights for mobile */
+        .feature-card, .info-card, .metric-card {
+            height: auto;
+            min-height: 210px;
         }
-        
-        /* Improved Download button */
-        .download-button {
-            display: inline-block;
-            background-color: #33d476;
-            color: white;
-            padding: 10px 18px;
-            text-align: center;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: bold;
-            margin: 10px 0;
-            transition: background-color 0.2s;
-        }
-        
-        .download-button:hover {
-            background-color: #166938;
-            color: white;
-        }
-        
-        /* Building card with improved hover effect */
-        .building-card {
-            height: 220px; /* Increased height */
-            background-color: white;
-            border-left: 4px solid #2E86C1;
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow-y: auto; /* Allow vertical scrolling if content overflows */
-        }
-        
-        .building-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
-        }
-        
-        .building-card h3 {
-            color: #2E86C1;
-            margin-top: 0;
-            margin-bottom: 12px;
-        }
-        
-        /* Tab styling improvements */
-        .stTabs [data-baseweb="tab-list"] {
-            gap: 8px;
-        }
-        
-        .stTabs [data-baseweb="tab"] {
-            border-radius: 4px 4px 0 0;
-            padding: 10px 16px;
-            background-color: #f8f9fa;
-        }
-        
-        .stTabs [aria-selected="true"] {
-            background-color: #33d476!important;
-            color: white !important;
-        }
-        
-        /* Mobile responsiveness improvements */
-        @media (max-width: 768px) {
-            .hero-section h1 {
-                font-size: 1.8rem;
-            }
-            
-            .hero-section p {
-                font-size: 1rem;
-            }
-            
-            .metric-value {
-                font-size: 1.8rem;
-            }
-            
-            .card, .feature-card, .info-card {
-                padding: 16px;
-            }
-            
-            /* Stack columns on mobile */
-            [data-testid="column"] {
-                width: 100% !important;
-                flex: 1 1 100% !important;
-                margin-bottom: 16px;
-            }
-            
-            /* Adjust card heights for mobile */
-            .feature-card, .info-card, .metric-card {
-                height: auto;
-                min-height: 200px;
-            }
-        }
-        
-        /* Action button styles */
-        .action-button {
-            padding: 10px 16px;
-            border-radius: 6px;
-            font-weight: 600;
-            transition: all 0.2s;
-        }
-        
-        .action-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-        
-        /* Form improvements */
-        [data-testid="stForm"] {
-            background-color: #f8f9fa;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-        }
-        
-        /* Better form field labels */
-        label {
-            font-weight: 500;
-            color: #333;
-        }
-        
-        /* Loading indicator */
-        .loading-spinner {
-            text-align: center;
-            padding: 20px;
-        }
-        
-        /* Year selector pills */
-        .year-pill {
-            display: inline-block;
-            padding: 5px 10px;
-            margin: 0 5px 5px 0;
-            background-color: #e0e0e0;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            cursor: pointer;
-        }
-        
-        .year-pill.active {
-            background-color: #2E86C1;
-            color: white;
-        }
-        
-        /* Status indicators */
-        .status-indicator {
-            display: inline-block;
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            margin-right: 6px;
-        }
-        
-        .status-indicator.red {
-            background-color: #d32f2f;
-        }
-        
-        .status-indicator.green {
-            background-color: #2e7d32;
-        }
-        
-        .status-indicator.amber {
-            background-color: #ff9800;
-        }
-        
-        /* Better table styles */
-        [data-testid="stTable"] table {
-            border-collapse: separate;
-            border-spacing: 0;
-            width: 100%;
-            border-radius: 8px;
-            overflow: hidden;
-        }
-        
-        [data-testid="stTable"] th {
-            background-color: #f1f1f1;
-            padding: 12px 15px;
-            text-align: left;
-            font-weight: 600;
-            color: #333;
-        }
-        
-        [data-testid="stTable"] td {
-            padding: 10px 15px;
-            border-bottom: 1px solid #e0e0e0;
-        }
-        
-        [data-testid="stTable"] tr:hover {
-            background-color: #f5f5f5;
-        }
-        
-        /* Info box styling */
-        .info-box {
-            background-color: #e8f4fd;
-            border-left: 4px solid #2196F3;
-            padding: 15px;
-            margin: 15px 0;
-            border-radius: 4px;
-        }
-        
-        /* Tooltip styling */
-        .tooltip {
-            position: relative;
-            display: inline-block;
-            cursor: help;
-        }
-        
-        .tooltip .tooltiptext {
-            visibility: hidden;
-            width: 200px;
-            background-color: #555;
-            color: #fff;
-            text-align: center;
-            border-radius: 6px;
-            padding: 5px;
-            position: absolute;
-            z-index: 1;
-            bottom: 125%;
-            left: 50%;
-            margin-left: -100px;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-        
-        .tooltip:hover .tooltiptext {
-            visibility: visible;
-            opacity: 1;
-        }
-                
-          st.form_submit_button
+    }
+    
+    /* Action buttons */
+    .action-button {
+        padding: 12px 18px;
+        border-radius: 6px;
+        font-weight: 600;
+        transition: all 0.25s ease;
+    }
+    
+    .action-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    }
+    
+    /* Form styling */
+    [data-testid="stForm"] {
+        background-color: #F5F9FA;
+        padding: 24px;
+        border-radius: 10px;
+        box-shadow: 0 3px 12px rgba(0,0,0,0.05);
+    }
+    
+    /* Form field labels */
+    label {
+        font-weight: 500;
+        color: #2C3E50;
+    }
+    
+    /* Loading indicator */
+    .loading-spinner {
+        text-align: center;
+        padding: 24px;
+    }
+    
+    /* Year selector pills */
+    .year-pill {
+        display: inline-block;
+        padding: 6px 12px;
+        margin: 0 6px 6px 0;
+        background-color: #E5E9F0;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+    
+    .year-pill:hover {
+        background-color: #D8DEE9;
+    }
+    
+    .year-pill.active {
+        background-color: #1D6A96; /* Ocean blue */
+        color: white;
+    }
+    
+    /* Status indicators */
+    .status-indicator {
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        margin-right: 8px;
+    }
+    
+    .status-indicator.red {
+        background-color: #CF6F42; /* Terracotta */
+    }
+    
+    .status-indicator.green {
+        background-color: #2A8D60; /* Forest green */
+    }
+    
+    .status-indicator.amber {
+        background-color: #F9E8DD; /* Warm sand */
+    }
+    
+    /* Table styles */
+    [data-testid="stTable"] table {
+        border-collapse: separate;
+        border-spacing: 0;
+        width: 100%;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+    }
+    
+    [data-testid="stTable"] th {
+        background-color: #F5F9FA;
+        padding: 14px 16px;
+        text-align: left;
+        font-weight: 600;
+        color: #2C3E50;
+        border-bottom: 1px solid #E5E9F0;
+    }
+    
+    [data-testid="stTable"] td {
+        padding: 12px 16px;
+        border-bottom: 1px solid #E5E9F0;
+    }
+    
+    [data-testid="stTable"] tr:hover {
+        background-color: #F8FAFC;
+    }
+    
+    /* Info box */
+    .info-box {
+        background-color: #EFF8F7; /* Light teal */
+        border-left: 4px solid #16A085; /* Teal */
+        padding: 18px;
+        margin: 18px 0;
+        border-radius: 6px;
+    }
+    
+    /* Tooltip */
+    .tooltip {
+        position: relative;
+        display: inline-block;
+        cursor: help;
+    }
+    
+    .tooltip .tooltiptext {
+        visibility: hidden;
+        width: 220px;
+        background-color: #2C3E50;
+        color: #fff;
+        text-align: center;
+        border-radius: 6px;
+        padding: 8px 10px;
+        position: absolute;
+        z-index: 1;
+        bottom: 125%;
+        left: 50%;
+        margin-left: -110px;
+        opacity: 0;
+        transition: opacity 0.3s;
+        font-size: 0.85rem;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
+    .tooltip:hover .tooltiptext {
+        visibility: visible;
+        opacity: 0.95;
+    }
+    
+    /* Button styling */       
+    st.form_submit_button[kind="primary"] {
+        border: none !important;
+        background-color: #6AB6E1 !important; /* Ocean blue */
+        color: white !important;
+        transition: all 0.25s ease !important;
+        box-shadow: 0 3px 8px rgba(0,0,0,0.1) !important;
+        font-weight: 500 !important;
+        letter-spacing: 0.3px !important;
+    }
 
-            st.form_submit_button[kind="primary"] {
-            border: none !important;
-            background-color: #4abced !important; /* Green color */
-            color: white !important;
-            transition: all 0.3s ease !important;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
-        }
+    /* Hover effect for primary form buttons */
+    st.form_submit_button[kind="primary"]:hover {
+        background-color:  #6AE193!important; /* Darker ocean blue */
+        transform: translateY(-2px) !important;
+        box-shadow: 0 5px 12px rgba(0,0,0,0.15) !important;
+    }       
+    
+    .stButton button[kind="primary"] {
+        border: none !important;
+        background-color: #6AB6E1 !important; /* Ocean blue */
+        color: white !important;
+        transition: all 0.25s ease !important;
+        box-shadow: 0 3px 8px rgba(0,0,0,0.1) !important;
+        font-weight: 500 !important;
+        letter-spacing: 0.3px !important;
+    }
 
-        /* Hover effect for primary buttons */
-        st.form_submit_button[kind="primary"]:hover {
-            background-color: #4abced !important; /* Darker green on hover */
-            transform: translateY(-2px) !important; /* Slight raise effect */
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2) !important; /* Enhanced shadow on hover */
-        }       
-        .stButton button[kind="primary"] {
-            border: none !important;
-            background-color: #4abced !important; /* Green color */
-            color: white !important;
-            transition: all 0.3s ease !important;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
-        }
+    /* Hover effect for primary buttons */
+    .stButton button[kind="primary"]:hover {
+        background-color: #6AE193 !important; /* Darker ocean blue */
+        transform: translateY(-2px) !important;
+        box-shadow: 0 5px 12px rgba(0,0,0,0.15) !important;
+    }
+    
+    .stButton button[kind="secondary"] {
+        border: none !important;
+        transition: all 0.25s ease !important;
+        box-shadow: 0 3px 8px rgba(0,0,0,0.05) !important;
+        font-weight: 500 !important;
+    }
 
-        /* Hover effect for primary buttons */
-        .stButton button[kind="primary"]:hover {
-            background-color: #4abced !important; /* Darker green on hover */
-            transform: translateY(-2px) !important; /* Slight raise effect */
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2) !important; /* Enhanced shadow on hover */
-        }
-        
-        .stButton button[kind="secondary"] {
-            border: none !important;
-
-            transition: all 0.3s ease !important;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
-        }
-
-        /* Hover effect for primary buttons */
-        .stButton button[kind="secondary"]:hover {
-            transform: translateY(-2px) !important; /* Slight raise effect */
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2) !important; /* Enhanced shadow on hover */
-        }
-
-    </style>
+    /* Hover effect for secondary buttons */
+    .stButton button[kind="secondary"]:hover {
+        transform: translateY(-2px) !important;
+        box-shadow: 0 5px 12px rgba(0,0,0,0.1) !important;
+    }
+    
+    /* Streamlit sidebar improvements */
+    [data-testid="stSidebar"] {
+        background-color: #F8FAFC !important;
+    }
+    
+    [data-testid="stSidebar"] [data-testid="stVerticalBlock"] {
+        padding-top: 1.5rem;
+    }
+    
+    /* Expandable sections */
+    [data-testid="stExpander"] {
+        border: 1px solid #E5E9F0;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+    
+    /* Inputs and selectboxes */
+    [data-testid="stTextInput"], 
+    [data-testid="stNumberInput"],
+    [data-testid="stSelectbox"] {
+        margin-bottom: 1rem;
+    }
+    
+    /* Footer styling */
+    footer {
+        visibility: hidden;
+    }
+</style>
     """, unsafe_allow_html=True)
 
 # --- UTILITY FUNCTIONS ---
@@ -862,6 +913,8 @@ def show_council_benefits():
         """, unsafe_allow_html=True)
 
 # New function for building energy comparison chart with improved visuals
+# Final chart functions with professional colors that work with Streamlit
+
 def create_building_energy_comparison_chart(comparison_data):
     """Create energy comparison chart between buildings"""
     building_summary = comparison_data.groupby(['building_name']).agg({
@@ -884,7 +937,7 @@ def create_building_energy_comparison_chart(comparison_data):
         'gas_kwh': 'Gas'
     })
     
-    # Create bar chart
+    # Create bar chart with professional colors
     fig = px.bar(
         plot_data,
         x='building_name',
@@ -898,8 +951,8 @@ def create_building_energy_comparison_chart(comparison_data):
             'energy_type': 'Energy Type'
         },
         color_discrete_map={
-            'Electricity': '#2e7d32',  # Green
-            'Gas': '#d32f2f'           # Red
+            'Electricity': '#2A8D60',  # Forest Green - environmental, mature
+            'Gas': '#CF6F42'           # Terracotta - natural, earth tone
         }
     )
     
@@ -913,7 +966,6 @@ def create_building_energy_comparison_chart(comparison_data):
     
     return fig
 
-# New function for building emissions comparison chart with improved visuals
 def create_building_emissions_comparison_chart(comparison_data):
     """Create emissions comparison chart between buildings"""
     building_summary = comparison_data.groupby(['building_name']).agg({
@@ -940,7 +992,7 @@ def create_building_emissions_comparison_chart(comparison_data):
         'gas_emissions_tonnes': 'Gas'
     })
     
-    # Create bar chart
+    # Create bar chart with professional colors
     fig = px.bar(
         plot_data,
         x='building_name',
@@ -953,8 +1005,8 @@ def create_building_emissions_comparison_chart(comparison_data):
             'emissions_type': 'Source'
         },
         color_discrete_map={
-            'Electricity': '#2e7d32',  # Green
-            'Gas': '#d32f2f'           # Red
+            'Electricity': '#2A8D60',  # Forest Green - environmental, mature
+            'Gas': '#CF6F42'           # Terracotta - natural, earth tone
         }
     )
     
@@ -968,7 +1020,6 @@ def create_building_emissions_comparison_chart(comparison_data):
     
     return fig
 
-# New function for yearly comparison chart with improved visuals
 def create_yearly_comparison_chart(df):
     """Create year-on-year comparison chart"""
     # Group by year
@@ -981,12 +1032,12 @@ def create_yearly_comparison_chart(df):
     # Create a figure with secondary y-axis
     fig = go.Figure()
     
-    # Add energy bars
+    # Add energy bars with professional colors
     fig.add_trace(go.Bar(
         x=yearly_data['year'],
         y=yearly_data['electricity_kwh'],
         name='Electricity (kWh)',
-        marker_color='#2e7d32',  # Green
+        marker_color='#2A8D60',  # Forest Green - environmental, mature
         offsetgroup=0
     ))
     
@@ -994,7 +1045,7 @@ def create_yearly_comparison_chart(df):
         x=yearly_data['year'],
         y=yearly_data['gas_kwh'],
         name='Gas (kWh)',
-        marker_color='#d32f2f',  # Red
+        marker_color='#CF6F42',  # Terracotta - natural, earth tone
         offsetgroup=0
     ))
     
@@ -1004,8 +1055,8 @@ def create_yearly_comparison_chart(df):
         y=yearly_data['total_emissions_tonnes'],
         name='Total Emissions (tCO₂e)',
         mode='lines+markers',
-        marker=dict(size=10, color='#1a73e8'),  # Blue
-        line=dict(width=3, color='#1a73e8'),
+        marker=dict(size=10, color='#1D6A96'),  # Deep Blue - trustworthy, matches Streamlit
+        line=dict(width=3, color='# 6096B5'),
         yaxis='y2'
     ))
     
@@ -1275,6 +1326,8 @@ def building_selection_page():
         st.rerun()
     st.markdown("</div>", unsafe_allow_html=True)
 
+# Complete function for the multiple month form with Clear Form button
+
 def show_multiple_month_form():
     """Form for entering multiple months of data with improved UX and logic flow"""
     st.markdown("<h2>Enter Energy Data for Multiple Months</h2>", unsafe_allow_html=True)
@@ -1344,6 +1397,14 @@ def show_multiple_month_form():
         if reporting_period != st.session_state.reporting_period:
             st.session_state.reporting_period = reporting_period
     
+    # NEW: Add a Clear Form button before the form
+    if 'clear_form_values' not in st.session_state:
+        st.session_state.clear_form_values = False
+        
+    if st.button("🗑️ Clear Form Values", key="clear_form_multi"):
+        st.session_state.clear_form_values = True
+        st.rerun()
+    
     # Display info about emissions factors
     with st.expander("About Emissions Factors"):
         st.markdown("""
@@ -1358,6 +1419,31 @@ def show_multiple_month_form():
         </div>
         """, unsafe_allow_html=True)
     
+    # Helper function for default values
+    def get_default(key):
+        # If clear is requested, return 0.0, otherwise use the custom defaults
+        if st.session_state.clear_form_values:
+            return 0.0
+        
+        # Example default values based on month - realistic patterns with seasonal variation
+        elec_defaults = {
+            "jan_elec": 10000.0, "feb_elec": 9500.0, "mar_elec": 9000.0, "apr_elec": 8500.0,
+            "may_elec": 8000.0, "jun_elec": 7800.0, "jul_elec": 7500.0, "aug_elec": 7800.0,
+            "sep_elec": 8200.0, "oct_elec": 8800.0, "nov_elec": 9500.0, "dec_elec": 10000.0
+        }
+        
+        gas_defaults = {
+            "jan_gas": 8000.0, "feb_gas": 7500.0, "mar_gas": 6500.0, "apr_gas": 5000.0,
+            "may_gas": 3500.0, "jun_gas": 2500.0, "jul_gas": 2000.0, "aug_gas": 2200.0,
+            "sep_gas": 3000.0, "oct_gas": 4500.0, "nov_gas": 6500.0, "dec_gas": 7800.0
+        }
+        
+        if key in elec_defaults:
+            return elec_defaults[key]
+        elif key in gas_defaults:
+            return gas_defaults[key]
+        return 0.0  # Default fallback
+    
     # Form for data entry with improved layout and logic
     with st.form("multiple_month_form", clear_on_submit=True):
         # Create tabs for months with improved styling
@@ -1367,70 +1453,70 @@ def show_multiple_month_form():
             col1, col2 = st.columns(2)
             with col1:
                 st.subheader("January")
-                jan_elec = st.number_input("Electricity (kWh)", min_value=0.0, value=10000.0, key="jan_elec")
-                jan_gas = st.number_input("Gas (kWh)", min_value=0.0, value=8000.0, key="jan_gas")
+                jan_elec = st.number_input("Electricity (kWh)", min_value=0.0, value=get_default("jan_elec"), key="jan_elec")
+                jan_gas = st.number_input("Gas (kWh)", min_value=0.0, value=get_default("jan_gas"), key="jan_gas")
             
             with col2:
                 st.subheader("February")
-                feb_elec = st.number_input("Electricity (kWh)", min_value=0.0, value=9500.0, key="feb_elec")
-                feb_gas = st.number_input("Gas (kWh)", min_value=0.0, value=7500.0, key="feb_gas")
+                feb_elec = st.number_input("Electricity (kWh)", min_value=0.0, value=get_default("feb_elec"), key="feb_elec")
+                feb_gas = st.number_input("Gas (kWh)", min_value=0.0, value=get_default("feb_gas"), key="feb_gas")
             
             col3, col4 = st.columns(2)
             with col3:
                 st.subheader("March")
-                mar_elec = st.number_input("Electricity (kWh)", min_value=0.0, value=9000.0, key="mar_elec")
-                mar_gas = st.number_input("Gas (kWh)", min_value=0.0, value=6500.0, key="mar_gas")
+                mar_elec = st.number_input("Electricity (kWh)", min_value=0.0, value=get_default("mar_elec"), key="mar_elec")
+                mar_gas = st.number_input("Gas (kWh)", min_value=0.0, value=get_default("mar_gas"), key="mar_gas")
             
             with col4:
                 st.subheader("April")
-                apr_elec = st.number_input("Electricity (kWh)", min_value=0.0, value=8500.0, key="apr_elec")
-                apr_gas = st.number_input("Gas (kWh)", min_value=0.0, value=5000.0, key="apr_gas")
+                apr_elec = st.number_input("Electricity (kWh)", min_value=0.0, value=get_default("apr_elec"), key="apr_elec")
+                apr_gas = st.number_input("Gas (kWh)", min_value=0.0, value=get_default("apr_gas"), key="apr_gas")
         
         with tabs[1]:
             col1, col2 = st.columns(2)
             with col1:
                 st.subheader("May")
-                may_elec = st.number_input("Electricity (kWh)", min_value=0.0, value=8000.0, key="may_elec")
-                may_gas = st.number_input("Gas (kWh)", min_value=0.0, value=3500.0, key="may_gas")
+                may_elec = st.number_input("Electricity (kWh)", min_value=0.0, value=get_default("may_elec"), key="may_elec")
+                may_gas = st.number_input("Gas (kWh)", min_value=0.0, value=get_default("may_gas"), key="may_gas")
             
             with col2:
                 st.subheader("June")
-                jun_elec = st.number_input("Electricity (kWh)", min_value=0.0, value=7800.0, key="jun_elec")
-                jun_gas = st.number_input("Gas (kWh)", min_value=0.0, value=2500.0, key="jun_gas")
+                jun_elec = st.number_input("Electricity (kWh)", min_value=0.0, value=get_default("jun_elec"), key="jun_elec")
+                jun_gas = st.number_input("Gas (kWh)", min_value=0.0, value=get_default("jun_gas"), key="jun_gas")
             
             col3, col4 = st.columns(2)
             with col3:
                 st.subheader("July")
-                jul_elec = st.number_input("Electricity (kWh)", min_value=0.0, value=7500.0, key="jul_elec")
-                jul_gas = st.number_input("Gas (kWh)", min_value=0.0, value=2000.0, key="jul_gas")
+                jul_elec = st.number_input("Electricity (kWh)", min_value=0.0, value=get_default("jul_elec"), key="jul_elec")
+                jul_gas = st.number_input("Gas (kWh)", min_value=0.0, value=get_default("jul_gas"), key="jul_gas")
             
             with col4:
                 st.subheader("August")
-                aug_elec = st.number_input("Electricity (kWh)", min_value=0.0, value=7800.0, key="aug_elec")
-                aug_gas = st.number_input("Gas (kWh)", min_value=0.0, value=2200.0, key="aug_gas")
+                aug_elec = st.number_input("Electricity (kWh)", min_value=0.0, value=get_default("aug_elec"), key="aug_elec")
+                aug_gas = st.number_input("Gas (kWh)", min_value=0.0, value=get_default("aug_gas"), key="aug_gas")
         
         with tabs[2]:
             col1, col2 = st.columns(2)
             with col1:
                 st.subheader("September")
-                sep_elec = st.number_input("Electricity (kWh)", min_value=0.0, value=8200.0, key="sep_elec")
-                sep_gas = st.number_input("Gas (kWh)", min_value=0.0, value=3000.0, key="sep_gas")
+                sep_elec = st.number_input("Electricity (kWh)", min_value=0.0, value=get_default("sep_elec"), key="sep_elec")
+                sep_gas = st.number_input("Gas (kWh)", min_value=0.0, value=get_default("sep_gas"), key="sep_gas")
             
             with col2:
                 st.subheader("October")
-                oct_elec = st.number_input("Electricity (kWh)", min_value=0.0, value=8800.0, key="oct_elec")
-                oct_gas = st.number_input("Gas (kWh)", min_value=0.0, value=4500.0, key="oct_gas")
+                oct_elec = st.number_input("Electricity (kWh)", min_value=0.0, value=get_default("oct_elec"), key="oct_elec")
+                oct_gas = st.number_input("Gas (kWh)", min_value=0.0, value=get_default("oct_gas"), key="oct_gas")
             
             col3, col4 = st.columns(2)
             with col3:
                 st.subheader("November")
-                nov_elec = st.number_input("Electricity (kWh)", min_value=0.0, value=9500.0, key="nov_elec")
-                nov_gas = st.number_input("Gas (kWh)", min_value=0.0, value=6500.0, key="nov_gas")
+                nov_elec = st.number_input("Electricity (kWh)", min_value=0.0, value=get_default("nov_elec"), key="nov_elec")
+                nov_gas = st.number_input("Gas (kWh)", min_value=0.0, value=get_default("nov_gas"), key="nov_gas")
             
             with col4:
                 st.subheader("December")
-                dec_elec = st.number_input("Electricity (kWh)", min_value=0.0, value=10000.0, key="dec_elec")
-                dec_gas = st.number_input("Gas (kWh)", min_value=0.0, value=7800.0, key="dec_gas")
+                dec_elec = st.number_input("Electricity (kWh)", min_value=0.0, value=get_default("dec_elec"), key="dec_elec")
+                dec_gas = st.number_input("Gas (kWh)", min_value=0.0, value=get_default("dec_gas"), key="dec_gas")
         
         # Provider information with clearer grouping
         st.markdown("<hr>", unsafe_allow_html=True)
@@ -1452,6 +1538,9 @@ def show_multiple_month_form():
         
         with col2:
             submitted = st.form_submit_button("Process All Data", type="primary", use_container_width=True)
+    
+    # Reset clear flag after form is rendered
+    st.session_state.clear_form_values = False
     
     # Handle form submission outside the form
     if submitted:
@@ -1530,6 +1619,8 @@ def show_multiple_month_form():
         st.session_state.entry_mode = None
         st.rerun()
 
+# Complete function for the single month form with Clear Form button
+
 def show_single_month_form():
     """Form for entering a single month of data with improved UX and logic flow"""
     st.markdown("<h2>Enter Energy Data for a Single Month</h2>", unsafe_allow_html=True)
@@ -1586,6 +1677,14 @@ def show_single_month_form():
     if reporting_period != st.session_state.reporting_period:
         st.session_state.reporting_period = reporting_period
     
+    # NEW: Add a Clear Form button before the form
+    if 'clear_single_form' not in st.session_state:
+        st.session_state.clear_single_form = False
+        
+    if st.button("🗑️ Clear Form Values", key="clear_form_single"):
+        st.session_state.clear_single_form = True
+        st.rerun()
+    
     # Form with improved layout and logic
     with st.form("single_month_form", clear_on_submit=True):
         st.markdown("### Reporting Month Details")
@@ -1594,11 +1693,21 @@ def show_single_month_form():
         
         with col1:
             month = st.date_input("📅 Reporting Month", datetime.now())
-            electricity_usage = st.number_input("⚡ Electricity Usage (kWh)", min_value=0.0, value=9000.0)
+            # Use 0.0 as default if clear form is requested
+            electricity_usage = st.number_input(
+                "⚡ Electricity Usage (kWh)", 
+                min_value=0.0, 
+                value=0.0 if st.session_state.clear_single_form else 9000.0
+            )
             electricity_provider = st.text_input("Electricity Provider (optional)", "", placeholder="e.g. EDF Energy")
         
         with col2:
-            gas_usage = st.number_input("🔥 Gas Usage (kWh)", min_value=0.0, value=5000.0)
+            # Use 0.0 as default if clear form is requested
+            gas_usage = st.number_input(
+                "🔥 Gas Usage (kWh)", 
+                min_value=0.0, 
+                value=0.0 if st.session_state.clear_single_form else 5000.0
+            )
             gas_provider = st.text_input("Gas Provider (optional)", "", placeholder="e.g. British Gas")
         
         st.markdown("---")
@@ -1631,6 +1740,9 @@ def show_single_month_form():
         
         with col2:
             submitted = st.form_submit_button("Save Data", type="primary", use_container_width=True)
+    
+    # Reset the clear flag after form is rendered
+    st.session_state.clear_single_form = False
     
     # Handle form submission outside the form
     if submitted:
@@ -1683,7 +1795,6 @@ def show_single_month_form():
     if st.button("← Back to Dashboard", key="back_from_single_month"):
         st.session_state.entry_mode = None
         st.rerun()
-
 # Function to show dashboard metrics with improved visual design
 def show_dashboard_metrics(df):
     """Display key metrics at the top of the dashboard"""
@@ -1859,8 +1970,14 @@ def show_buildings_comparison():
         st.session_state.selected_view = "all"
         st.rerun()
 
+# Additional chart functions with updated colors
+
+# Additional chart functions with sleek, professional climate colors
+
+# Additional chart functions with professional colors for Streamlit
+
 def create_usage_chart(dashboard_df):
-    """Create energy usage chart with improved visuals"""
+    """Create energy usage chart with professional colors"""
     # Sort data by month
     try:
         dashboard_df['month_dt'] = pd.to_datetime(dashboard_df['month'], format='%B %Y')
@@ -1872,20 +1989,20 @@ def create_usage_chart(dashboard_df):
     
     fig = go.Figure()
     
-    # Add electricity data
+    # Add electricity data with professional color
     fig.add_trace(go.Bar(
         x=dashboard_df["month"],
         y=dashboard_df["Electricity"],
         name="Electricity (kWh)",
-        marker_color="#2e7d32"  # Green
+        marker_color="#2A8D60"  # Forest Green - environmental
     ))
     
-    # Add gas data
+    # Add gas data with earth tone
     fig.add_trace(go.Bar(
         x=dashboard_df["month"],
         y=dashboard_df["Gas"],
         name="Gas (kWh)",
-        marker_color="#d32f2f"  # Red
+        marker_color="#CF6F42"  # Terracotta - natural
     ))
     
     # Add trend line if enough data
@@ -1894,14 +2011,14 @@ def create_usage_chart(dashboard_df):
             x=dashboard_df["month"],
             y=dashboard_df["Electricity"].rolling(3, min_periods=1).mean(),
             name="Electricity 3-Month Average",
-            line=dict(color="#2e7d32", dash="dash", width=2)
+            line=dict(color="#2A8D60", dash="dash", width=2)  # Forest Green
         ))
         
         fig.add_trace(go.Scatter(
             x=dashboard_df["month"],
             y=dashboard_df["Gas"].rolling(3, min_periods=1).mean(),
             name="Gas 3-Month Average",
-            line=dict(color="#d32f2f", dash="dash", width=2)
+            line=dict(color="#CF6F42", dash="dash", width=2)  # Terracotta
         ))
     
     fig.update_layout(
@@ -1918,7 +2035,7 @@ def create_usage_chart(dashboard_df):
     return fig
 
 def create_emissions_chart(dashboard_df):
-    """Create emissions chart with improved visuals"""
+    """Create emissions chart with professional colors"""
     # Sort data by month
     try:
         dashboard_df['month_dt'] = pd.to_datetime(dashboard_df['month'], format='%B %Y')
@@ -1930,33 +2047,33 @@ def create_emissions_chart(dashboard_df):
     
     fig = go.Figure()
     
-    # Add electricity emissions
+    # Add electricity emissions with professional colors
     fig.add_trace(go.Scatter(
         x=dashboard_df["month"],
         y=dashboard_df["Electricity Emissions"],
         name="Electricity (tCO₂e)",
         mode="lines+markers",
-        line=dict(color="#2e7d32", width=3),  # Green
-        marker=dict(size=8, color="#2e7d32")
+        line=dict(color="#2A8D60", width=3),  # Forest Green - environmental
+        marker=dict(size=8, color="#2A8D60")
     ))
     
-    # Add gas emissions
+    # Add gas emissions with earth tone
     fig.add_trace(go.Scatter(
         x=dashboard_df["month"],
         y=dashboard_df["Gas Emissions"],
         name="Gas (tCO₂e)",
         mode="lines+markers",
-        line=dict(color="#d32f2f", width=3),  # Red
-        marker=dict(size=8, color="#d32f2f")
+        line=dict(color="#CF6F42", width=3),  # Terracotta - natural
+        marker=dict(size=8, color="#CF6F42")
     ))
     
-    # Add total emissions
+    # Add total emissions with streamlit-friendly blue
     fig.add_trace(go.Scatter(
         x=dashboard_df["month"],
         y=dashboard_df["Electricity Emissions"] + dashboard_df["Gas Emissions"],
         name="Total Emissions (tCO₂e)",
         mode="lines",
-        line=dict(color="#1a73e8", width=4)
+        line=dict(color="#1D6A96", width=4)  # Deep Blue - trustworthy, matches Streamlit
     ))
     
     fig.update_layout(
@@ -1972,7 +2089,7 @@ def create_emissions_chart(dashboard_df):
     return fig
 
 def create_emissions_pie_chart(df):
-    """Create emissions breakdown pie chart with improved visuals"""
+    """Create emissions breakdown pie chart with professional colors"""
     emissions_data = [
         df["electricity_emissions_kg"].sum() / 1000,
         df["gas_emissions_kg"].sum() / 1000
@@ -1993,7 +2110,7 @@ def create_emissions_pie_chart(df):
         values=emissions_data,
         names=["Electricity", "Gas"],
         title="Emissions Breakdown by Source",
-        color_discrete_sequence=["#2e7d32", "#d32f2f"],  # Green and Red
+        color_discrete_sequence=["#2A8D60", "#CF6F42"],  # Forest Green and Terracotta
         hole=0.4
     )
     
@@ -2016,7 +2133,6 @@ def create_emissions_pie_chart(df):
     )
     
     return fig
-
 # def show_environmental_impact(total_emissions):
 #     """Show environmental impact metrics with improved visuals"""
 #     st.subheader("Environmental Impact")
@@ -2070,6 +2186,7 @@ def create_emissions_pie_chart(df):
 #     """, unsafe_allow_html=True)
 
 # Year-on-Year Analysis feature
+
 def show_yearly_analysis():
     """Dedicated page for comprehensive year-on-year analysis"""
     st.markdown("<h1>Year-on-Year Analysis</h1>", unsafe_allow_html=True)
@@ -2090,14 +2207,17 @@ def show_yearly_analysis():
         </div>
         """, unsafe_allow_html=True)
         
+        # FIX: Simplify the button logic to directly navigate to data entry
         if st.button("Add Data Now", type="primary"):
+            st.session_state.current_page = 'data_entry'
+            st.session_state.entry_mode = "multiple"
+            # If we have buildings, select the first one
             if st.session_state.buildings:
                 st.session_state.selected_building = st.session_state.buildings[0]["id"]
-                st.session_state.entry_mode = "multiple"
-                st.rerun()
+            # If no buildings exist, set entry mode to add building first
             else:
                 st.session_state.entry_mode = "add_building"
-                st.rerun()
+            st.rerun()
         return
     
     # If we have less than 2 years of data, provide guidance
@@ -3616,6 +3736,51 @@ def landing_page():
             st.rerun()
         st.markdown("<p style='text-align: center; font-size: 0.85rem;'>Learn more about our solutions</p>", unsafe_allow_html=True)
     
+    # Contact form
+    show_contact_us_form()
+
+def contact_us_page():
+    """Display the contact us page with improved UX"""
+    st.markdown("<h1>Contact Us</h1>", unsafe_allow_html=True)
+    # Add prototype banner
+    add_data_disclaimer()
+    # Add a more engaging introduction - fixed to properly render HTML
+    st.markdown("""
+        <div class="card" style="margin-bottom: 30px;">
+        <h3 style="margin-top: 0;">Get in Touch</h3>
+        <p>Have questions about our carbon reporting solution? Looking to unlock premium features?</p>
+        <p>Complete the form below and our team will get back to you within 24 hours.</p>
+        <p>Email us directly at <a href="mailto:hello@civiccarbon.com">hello@civiccarbon.com</a></p>
+        </div>
+        """, unsafe_allow_html=True)
+    # Use columns instead of flex layout for better compatibility
+    col1, col2, col3 = st.columns(3)
+    with col1:
+        st.markdown("""
+            <div style="text-align: center;">
+            <img src="https://img.icons8.com/fluency/48/000000/support.png" alt="Support Icon" style="width: 40px; margin-bottom: 10px;">
+            <h4 style="margin: 5px 0;">Dedicated Support</h4>
+            <p style="color: #666; font-size: 0.9rem;">Our team of carbon reporting experts is ready to help</p>
+            </div>
+            """, unsafe_allow_html=True)
+    with col2:
+        st.markdown("""
+            <div style="text-align: center;">
+            <img src="https://img.icons8.com/fluency/48/000000/calendar-26.png" alt="Calendar Icon" style="width: 40px; margin-bottom: 10px;">
+            <h4 style="margin: 5px 0;">Quick Response</h4>
+            <p style="color: #666; font-size: 0.9rem;">We aim to respond to all inquiries within 24 hours</p>
+            </div>
+            """, unsafe_allow_html=True)
+    with col3:
+        st.markdown("""
+            <div style="text-align: center;">
+            <img src="https://img.icons8.com/fluency/48/000000/training.png" alt="Training Icon" style="width: 40px; margin-bottom: 10px;">
+            <h4 style="margin: 5px 0;">Free Consultation</h4>
+            <p style="color: #666; font-size: 0.9rem;">Get a free 30-minute consultation on your reporting needs</p>
+            </div>
+            """, unsafe_allow_html=True)
+    # Add some spacing before the contact form
+    st.markdown("<div style='height: 20px;'></div>", unsafe_allow_html=True)
     # Contact form
     show_contact_us_form()
 
