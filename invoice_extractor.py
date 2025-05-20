@@ -1,4 +1,5 @@
 
+
 import streamlit as st
 import pandas as pd
 import plotly.express as px
@@ -12,6 +13,22 @@ import io
 import uuid
 import time
 import calendar
+
+def add_google_analytics():
+    ga_script = """
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FCFLYFYYD4"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-FCFLYFYYD4');
+    </script>
+    """
+    components.html(ga_script, height=0)
+
+# Call the function to add the Google Analytics code
+add_google_analytics()
 
 # --- CONSTANTS ---
 TREE_ABSORPTION_RATE = 21  # kg CO2 per tree per year
